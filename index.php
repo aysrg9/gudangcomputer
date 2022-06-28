@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+require 'functions.php';
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -35,16 +44,16 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto fw-bold">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">HOME</a>
+                            <a class="nav-link text-white" href="index.php">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Pricing</a>
+                            <a class="nav-link text-white disabled" href="pricing.php">Pricing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Contact</a>
+                            <a class="nav-link text-white" href="tables.php">Tables</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Login</a>
+                            <a class="nav-link text-white" href="logout.php">Logout</a>
                         </li>
                     </ul>
                 </div>

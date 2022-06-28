@@ -1,58 +1,26 @@
 <?php
 
 session_start();
-require 'functions.php';
-
-// cek cookie
-if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
-    $id = $_COOKIE['id'];
-    $key = $_COOKIE['key'];
-
-    // ambil username berdasarkan id
-    $result = mysqli_query($conn, "SELECT username FROM user WHERE id = $id");
-    $row = mysqli_fetch_assoc($result);
-
-    // cek cookie dan username
-    if ($key === hash('sha256', $row['username'])) {
-        $_SESSION['login'] = true;
-    }
-}
-
-if (isset($_SESSION["login"])) {
-    header("Location: index.php");
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
     exit;
 }
 
-if (isset($_POST["login"])) {
+require 'functions.php';
 
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    $result = mysqli_query($db, "SELECT * FROM user WHERE username = '$username'");
-
-    // cek username
-    if (mysqli_num_rows($result) === 1) {
-        // cek password
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row["password"])) {
-            // set session
-            $_SESSION["login"] = true;
-
-            // cek remember me
-            if (isset($_POST['remember'])) {
-                // buat cookie
-                setcookie('id', $row['id'], time() + 60);
-                setcookie('key', hash('sha256', $row['username']), time() + 60);
-            }
-            header("Location: index.php");
-            exit;
-        }
+if (isset($_POST["register"])) {
+    if (registrasi($_POST) > 0) {
+        echo "
+            <script>
+                alert('user baru berhasil di tambahkan!');
+            </script>
+       ";
+    } else {
+        echo mysqli_error($db);
     }
-
-    $error = true;
 }
-
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -68,7 +36,7 @@ if (isset($_POST["login"])) {
     <!-- My CSS -->
     <link rel="stylesheet" href="./css/index.css">
 
-    <title>Login</title>
+    <title>Register</title>
 </head>
 
 <body>
@@ -82,22 +50,19 @@ if (isset($_POST["login"])) {
                         <div class="welcome">
                             <h3 class="fs-3 fw-bold">WELCOME</h3>
                         </div>
-
-                        <?php if (isset($error)) : ?>
-                        <script>
-                        alert('Username / Password Invalid!');
-                        </script>
-                        <?php endif; ?>
-
                         <div class="mb-3">
                             <input type"text" class="form-control" id="username" name="username" placeholder="Username"
                                 required>
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password" required>
                         </div>
-                        <button type="submit" name="login" class="btn btn-primary login">LOGIN</button>
+                        <div class="mb-4">
+                            <input type="password" class="form-control" id="password2" name="password2"
+                                placeholder="Retype Password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary login" name="register">REGISTER</button>
                     </form>
                 </div>
             </div>

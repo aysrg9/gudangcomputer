@@ -20,7 +20,7 @@ body {
 }
 
 #content {
-  background-image: url(../img/bg.jpg);
+  background-image: url(../image/bg.jpg);
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -79,4 +79,12 @@ body {
 
 .login:hover {
   font-weight: bold;
+}
+
+/* Tables */
+.jumbotron hr {
+  width: 100px;
+  height: 5px;
+  opacity: 1;
+  margin: 0 auto;
 }

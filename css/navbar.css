@@ -1,0 +1,21 @@
+body {
+  overflow-x: hidden;
+  background-color: #e2edff;
+  font-family: "Poppins", sans-serif;
+  height: 80vh;
+}
+
+.navbar-brand {
+  font-family: "Pacifico", cursive;
+  font-size: 25px;
+}
+
+.nav-link {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
