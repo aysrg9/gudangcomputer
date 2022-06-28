@@ -159,3 +159,15 @@ function ubah($data)
 
     return mysqli_affected_rows($db);
 }
+
+function cari($keyword)
+{
+    $query = "SELECT * FROM product
+                WHERE
+            nama LIKE '%$keyword%' OR
+            spesifikasi LIKE '%$keyword%' OR
+            stock LIKE '%$keyword%' OR
+            price LIKE '%$keyword%'
+            ";
+    return query($query);
+}
