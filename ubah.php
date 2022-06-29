@@ -23,14 +23,14 @@ if (isset($_POST["submit"])) {
     if (ubah($_POST) > 0) {
         echo "
             <script>
-                alert('data berhasil dirubah!');
+                alert('Data Changed Successfully!');
                 document.location.href = 'tables.php';
             </script>
        ";
     } else {
         echo "
         <script>
-            alert('data gagal dirubah!');
+            alert('Data Failed To Change!');
             document.location.href = 'tables.php';
         </script>
         ";
@@ -64,7 +64,7 @@ if (isset($_POST["submit"])) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <title>Ubah data</title>
+    <title>Change Product</title>
 </head>
 
 <body>
@@ -88,7 +88,8 @@ if (isset($_POST["submit"])) {
                         <a class="nav-link text-white" href="tables.php">Tables</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="logout.php">Logout</a>
+                        <a class="nav-link text-white" href="logout.php"
+                            onclick="return confirm('Are You Sure?')">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -100,7 +101,7 @@ if (isset($_POST["submit"])) {
 
         <!-- Header -->
         <section class="jumbotron text-center mb-4" style="margin-top: 100px;">
-            <h1 class="display-5 text-uppercase fw-bold">Ubah Data</h1>
+            <h1 class="display-5 text-uppercase fw-bold">Change Product</h1>
             <hr class="text-primary underline">
         </section>
         <!-- Akhir Header -->
@@ -110,11 +111,11 @@ if (isset($_POST["submit"])) {
             <input type="hidden" name="id" value="<?= $prdct["id"]; ?>">
             <input type="hidden" name="gambarLama" value="<?= $prdct["gambar"]; ?>">
             <div class="mb-4">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama"
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name"
                     value="<?= $prdct["nama"]; ?>">
             </div>
             <div class="mb-4">
-                <input type="url" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Spesifikasi"
+                <input type="url" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Specification"
                     value="<?= $prdct["spesifikasi"]; ?>">
             </div>
             <div class="mb-4">
@@ -126,7 +127,7 @@ if (isset($_POST["submit"])) {
                     value="<?= $prdct["price"]; ?>">
             </div>
             <div class="mb-3">
-                <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Gambar"
+                <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Image"
                     value="<?= $prdct["gambar"]; ?>">
             </div>
             <button type="submit" class="btn btn-primary mb-4" name="submit"><i class="bi bi-upload"></i></button>

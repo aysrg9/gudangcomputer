@@ -16,14 +16,14 @@ if (isset($_POST["upload"])) {
     if (tambah($_POST) > 0) {
         echo "
             <script>
-                alert('data berhasil ditambahkan!');
+                alert('Data Added Successfully!');
                 document.location.href = 'tables.php';
             </script>
        ";
     } else {
         echo "
         <script>
-            alert('data gagal ditambahkan!');
+            alert('Data Failed To Add!');
             document.location.href = 'tables.php';
         </script>
         ";
@@ -57,7 +57,7 @@ if (isset($_POST["upload"])) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <title>Tambah data</title>
+    <title>Add Product</title>
 </head>
 
 <body>
@@ -81,7 +81,8 @@ if (isset($_POST["upload"])) {
                         <a class="nav-link text-white" href="tables.php">Tables</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Logout</a>
+                        <a class="nav-link text-white" href="logout.php"
+                            onclick="return confirm('Are You Sure?')">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -93,7 +94,7 @@ if (isset($_POST["upload"])) {
 
         <!-- Header -->
         <section class="jumbotron text-center mb-4" style="margin-top: 100px;">
-            <h1 class="display-5 text-uppercase fw-bold">Tambah Data</h1>
+            <h1 class="display-5 text-uppercase fw-bold">Add Product</h1>
             <hr class="text-primary underline">
         </section>
         <!-- Akhir Header -->
@@ -101,10 +102,10 @@ if (isset($_POST["upload"])) {
         <!-- Form Tambah Data -->
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-4">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name">
             </div>
             <div class="mb-4">
-                <input type="url" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Spesifikasi">
+                <input type="url" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Specification">
             </div>
             <div class="mb-4">
                 <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock">
@@ -113,7 +114,7 @@ if (isset($_POST["upload"])) {
                 <input type="text" class="form-control" id="price" name="price" placeholder="Price">
             </div>
             <div class="mb-3">
-                <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Gambar">
+                <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Image">
             </div>
             <button type="submit" class="btn btn-primary mb-4" name="upload"><i class="bi bi-upload"></i></button>
         </form>

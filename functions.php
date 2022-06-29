@@ -28,7 +28,7 @@ function registrasi($data)
     if (mysqli_fetch_assoc($result)) {
         echo "
             <script>
-                alert('Username sudah terdaftar');
+                alert('User Is Already Registered');
             </script>
             ";
         return false;
@@ -120,10 +120,13 @@ function upload()
     return $namaFileBaru;
 }
 
-function hapus($id)
+function hapus($query)
 {
     global $db;
-    mysqli_query($db, "DELETE FROM product WHERE id = $id");
+    $file = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM product WHERE id='$query'"));
+    unlink('image/' . $file["gambar"]);
+    $hapus = "DELETE FROM product WHERE id='$query'";
+    mysqli_query($db, $hapus);
     return mysqli_affected_rows($db);
 }
 

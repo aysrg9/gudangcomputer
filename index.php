@@ -11,6 +11,7 @@ require 'functions.php';
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +54,8 @@ require 'functions.php';
                             <a class="nav-link text-white" href="tables.php">Tables</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="logout.php">Logout</a>
+                            <a class="nav-link text-white" href="logout.php"
+                                onclick="return confirm('Are You Sure?')">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -62,11 +64,12 @@ require 'functions.php';
         <!-- Akhir Navbar -->
 
         <!-- Jumbotron -->
-        <section
-            class="jumbotron text-center justify-content-center align-items-center d-flex h-100 flex-column text-white">
+        <section class=" jumbotron text-center justify-content-center align-items-center d-flex h-100 flex-column
+                                text-white">
             <div class="jumbotron-content">
                 <h1 class="display-4">Dashboard Page</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for
+                    calling extra
                     attention
                     to
                     featured content or information.</p>
@@ -92,6 +95,7 @@ require 'functions.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+
 </body>
 
 </html>

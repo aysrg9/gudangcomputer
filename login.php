@@ -84,18 +84,18 @@ if (isset($_POST["login"])) {
                         </div>
 
                         <?php if (isset($error)) : ?>
-                        <script>
-                        alert('Username / Password Invalid!');
-                        </script>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Try Again!</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                         <?php endif; ?>
 
                         <div class="mb-3">
-                            <input type"text" class="form-control" id="username" name="username" placeholder="Username"
-                                required>
+                            <input type"text" class="form-control" id="username" name="username" placeholder="Username">
                         </div>
-                        <div class="mb-4">
+                        <div class="mb-3">
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password" required>
+                                placeholder="Password">
                         </div>
                         <button type="submit" name="login" class="btn btn-primary login">LOGIN</button>
                     </form>
