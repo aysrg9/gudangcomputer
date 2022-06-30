@@ -13,6 +13,7 @@ function query($query)
     return $rows;
 }
 
+// Regist Page Admin
 function registrasi($data)
 {
     global $db;
@@ -23,7 +24,7 @@ function registrasi($data)
 
 
     // cek username sudah ada atau belum 
-    $result = mysqli_query($db, "SELECT username FROM user WHERE username = '$username'");
+    $result = mysqli_query($db, "SELECT username FROM admin WHERE username = '$username'");
 
     if (mysqli_fetch_assoc($result)) {
         echo "
@@ -47,7 +48,48 @@ function registrasi($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //tambahkan user baru ke db
-    mysqli_query($db, "INSERT INTO user VALUES(id,'$username','$password')");
+    mysqli_query($db, "INSERT INTO admin VALUES(id,'$username','$password')");
+    return mysqli_affected_rows($db);
+}
+
+// Regist Customer
+function registrasic($data)
+{
+    global $db;
+
+    $username = strtolower(stripslashes($data["username"]));
+    $name = strtolower(stripslashes($data["name"]));
+    $email = strtolower(stripslashes($data["email"]));
+    $password = mysqli_real_escape_string($db, $data["password"]);
+    $password2 = mysqli_real_escape_string($db, $data["password2"]);
+
+
+    // cek username sudah ada atau belum 
+    $result = mysqli_query($db, "SELECT username FROM customer WHERE username = '$username'");
+
+    if (mysqli_fetch_assoc($result)) {
+        echo "
+            <script>
+                alert('User Is Already Registered');
+            </script>
+            ";
+        return false;
+    }
+
+    // cek konfirmasi password 
+    if ($password !== $password2) {
+        echo "
+            <script>
+                alert('konfirmasi password tidak sesuai');
+            </script>
+            ";
+        return false;
+    }
+    // enskirpsi password 
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    //tambahkan user baru ke db
+    mysqli_query($db, "INSERT INTO customer VALUES(id,'$username','$name','$email','$password')");
     return mysqli_affected_rows($db);
 }
 

@@ -6,7 +6,7 @@ if (!isset($_SESSION["login"])) {
     exit;
 }
 
-require 'functions.php';
+require '../functions.php';
 
 if (isset($_POST["register"])) {
     if (registrasi($_POST) > 0) {
@@ -34,7 +34,7 @@ if (isset($_POST["register"])) {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
 
     <title>Register</title>
 </head>

@@ -1,34 +1,21 @@
 <?php
+
 session_start();
+
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
-// dipakai function
-require 'functions.php';
 
-// cek apakah tombol submit sudah di tekan atau belum 
-if (isset($_POST["upload"])) {
+require '../functions.php';
 
+$product = query("SELECT * FROM product");
 
-
-    // cek apakah data berhasil ditambahkan atau tidak
-    if (tambah($_POST) > 0) {
-        echo "
-            <script>
-                alert('Data Added Successfully!');
-                document.location.href = 'tables.php';
-            </script>
-       ";
-    } else {
-        echo "
-        <script>
-            alert('Data Failed To Add!');
-            document.location.href = 'tables.php';
-        </script>
-        ";
-    }
+//tombol cari di ketik
+if (isset($_POST["cari"])) {
+    $product = cari($_POST["keyword"]);
 }
+
 
 ?>
 
@@ -45,8 +32,8 @@ if (isset($_POST["upload"])) {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
 
     <!-- Font Goole -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,7 +44,13 @@ if (isset($_POST["upload"])) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <title>Add Product</title>
+    <style>
+    body {
+        height: 90vh;
+
+    }
+    </style>
+    <title>Tables</title>
 </head>
 
 <body>
@@ -75,10 +68,10 @@ if (isset($_POST["upload"])) {
                         <a class="nav-link text-white" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white disabled" href="pricing.php">Pricing</a>
+                        <a class="nav-link text-white disabled" href="pricing.php">Order List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="tables.php">Tables</a>
+                        <a class="nav-link text-white" href="tables.php">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="logout.php"
@@ -90,35 +83,69 @@ if (isset($_POST["upload"])) {
     </nav>
     <!-- Akhir Navbar -->
 
-    <section class="container">
+    <section id="container" class="container">
 
         <!-- Header -->
-        <section class="jumbotron text-center mb-4" style="margin-top: 100px;">
-            <h1 class="display-5 text-uppercase fw-bold">Add Product</h1>
+        <section class="jumbotron text-center mb-5" style="margin-top: 100px;">
+            <h1 class="display-5 text-uppercase fw-bold">Product</h1>
             <hr class="text-primary underline">
         </section>
         <!-- Akhir Header -->
 
-        <!-- Form Tambah Data -->
-        <form action="" method="post" enctype="multipart/form-data">
-            <div class="mb-4">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name">
-            </div>
-            <div class="mb-4">
-                <input type="url" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Specification">
-            </div>
-            <div class="mb-4">
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock">
-            </div>
-            <div class="mb-4">
-                <input type="text" class="form-control" id="price" name="price" placeholder="Price">
-            </div>
-            <div class="mb-3">
-                <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Image">
-            </div>
-            <button type="submit" class="btn btn-primary mb-4" name="upload"><i class="bi bi-upload"></i></button>
+        <!-- Tambah Data -->
+        <a href="add.php" class="d-inline-block float-start">
+            <button class="btn btn-primary fw-bold text-uppercase">Add Product</button>
+        </a>
+        <!-- Akhir Tambah Data -->
+
+        <!-- Search -->
+        <form action="" method="post">
+            <input class="form-control container mb-3 w-25 float-end" type="search" list="datalistOptions" id="keyword"
+                name="keyword" autocomplete="off" placeholder="Type to search...">
+            <button type="submit" name="cari" id="tombol-cari"
+                class="btn btn-primary ms-1 text-uppercase fw-bold float-end d-none">Cari</button>
         </form>
-        <!-- Akhir Form Tambah Data -->
+        <!-- Akhir Search -->
+
+        <!-- Tables -->
+        <div id="container">
+            <table class="table bg-primary container text-center text-white mb-5 fw-bold">
+                <tr class="text-uppercase">
+                    <th>No</th>
+                    <th>Action</th>
+                    <th>Name</th>
+                    <th>Specification</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+
+                <?php $i = 1; ?>
+                <?php foreach ($product as $row) : ?>
+
+                <tr>
+                    <td><?= $i ?></td>
+                    <td>
+                        <a onclick="return confirm('Are You Sure?')" class="text-white"
+                            href="delete.php?id=<?= $row["id"] ?>"><i class="bi bi-trash-fill"></i></a>
+                        |
+                        <a class="text-white" href="change.php?id=<?= $row["id"] ?>"><i
+                                class="bi bi-pencil-square"></i></a>
+                    </td>
+                    <td><?= $row["nama"] ?></td>
+                    <td><a class="text-white" href="<?= $row["spesifikasi"] ?>" target="_blank">CLICK HERE</a></td>
+                    <td><?= $row["stock"] ?></td>
+                    <td>Rp <?= $row["price"] ?></td>
+                    <td><a href="../image/<?= $row["gambar"] ?>" target="_blank"><img
+                                src="../image/<?= $row["gambar"] ?>" alt="" width="80px"></a></td>
+                </tr>
+
+                <?php $i++ ?>
+                <?php endforeach; ?>
+
+            </table>
+        </div>
+        <!-- Akhir Tables -->
 
     </section>
 

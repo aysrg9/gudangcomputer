@@ -7,7 +7,7 @@ if (!isset($_SESSION["login"])) {
 }
 
 // dipakai function
-require 'functions.php';
+require '../functions.php';
 
 // ambil data di url 
 $id = $_GET["id"];
@@ -24,14 +24,14 @@ if (isset($_POST["submit"])) {
         echo "
             <script>
                 alert('Data Changed Successfully!');
-                document.location.href = 'tables.php';
+                document.location.href = 'product.php';
             </script>
        ";
     } else {
         echo "
         <script>
             alert('Data Failed To Change!');
-            document.location.href = 'tables.php';
+            document.location.href = 'product.php';
         </script>
         ";
     }
@@ -52,8 +52,8 @@ if (isset($_POST["submit"])) {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./css/navbar.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
 
     <!-- Font Goole -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,10 +82,10 @@ if (isset($_POST["submit"])) {
                         <a class="nav-link text-white" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white disabled" href="pricing.php">Pricing</a>
+                        <a class="nav-link text-white disabled" href="pricing.php">Order List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="tables.php">Tables</a>
+                        <a class="nav-link text-white" href="product.php">Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="logout.php"

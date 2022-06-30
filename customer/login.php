@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require 'functions.php';
+require '../functions.php';
 
 // cek cookie
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
@@ -28,7 +28,7 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $result = mysqli_query($db, "SELECT * FROM user WHERE username = '$username'");
+    $result = mysqli_query($db, "SELECT * FROM customer WHERE username = '$username'");
 
     // cek username
     if (mysqli_num_rows($result) === 1) {
@@ -66,7 +66,7 @@ if (isset($_POST["login"])) {
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
 
     <title>Login</title>
 </head>
@@ -93,9 +93,12 @@ if (isset($_POST["login"])) {
                         <div class="mb-3">
                             <input type"text" class="form-control" id="username" name="username" placeholder="Username">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-1">
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password">
+                        </div>
+                        <div class="mb-3" style="font-size: 13px;">
+                            <a class="text-white" href="regist.php">Don't Have Account ?</a>
                         </div>
                         <button type="submit" name="login" class="btn btn-primary login">LOGIN</button>
                     </form>

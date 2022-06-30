@@ -4,7 +4,7 @@ if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
-require 'functions.php';
+require '../functions.php';
 ?>
 
 <!doctype html>
@@ -21,7 +21,7 @@ require 'functions.php';
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
 
     <!-- Font Goole -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,10 +48,10 @@ require 'functions.php';
                             <a class="nav-link text-white" href="index.php">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white disabled" href="pricing.php">Pricing</a>
+                            <a class="nav-link text-white disabled" href="pricing.php">Order List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="tables.php">Tables</a>
+                            <a class="nav-link text-white" href="product.php">Product</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="logout.php"
