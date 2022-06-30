@@ -45,7 +45,8 @@
                         <a class="nav-link text-white" href="#">Cart <i class="bi bi-cart3"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Profile <i class="bi bi-person-circle"></i></a>
+                        <a class="nav-link text-white" href="profile.php">Profile <i
+                                class="bi bi-person-circle"></i></a>
                     </li>
                 </ul>
             </div>
@@ -63,7 +64,7 @@
     <!-- Akhir Navbar -->
 
     <!-- Slide -->
-    <section class="container">
+    <section class="container mb-5">
         <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="true">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -152,6 +153,19 @@
         <!-- Akhir Product -->
     </section>
     <!-- Akhir Content Produk -->
+
+    <!-- Footer -->
+    <footer id="footer" class="py-4 bg-primary position-relative">
+        <div class="container-md text-center text-white fs-6">
+            <p class="my-0">&copy; Copyright <span class="fw-bold">gudangcomputer</span>. All Rights Reserved.</p>
+            <p class="my-0">
+                Created & Design
+                by
+                <span class="fw-bold">@Egiditya.</span>
+            </p>
+        </div>
+    </footer>
+    <!-- Akhir Footer -->
 
     <!-- JS Bootstarp -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

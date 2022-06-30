@@ -2,7 +2,7 @@ body {
     overflow-x: hidden;
     background-color: #e2edff;
     font-family: "Poppins", sans-serif;
-    height: 250vh;
+    /* height: 250vh; */
   }
 
 .navbar-brand {
