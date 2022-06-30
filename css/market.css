@@ -2,7 +2,7 @@ body {
     overflow-x: hidden;
     background-color: #e2edff;
     font-family: "Poppins", sans-serif;
-    height: 200vh;
+    height: 250vh;
   }
 
 .navbar-brand {
@@ -22,4 +22,13 @@ body {
 #search {
     margin-top: 64px;
     background-color: rgba(08, 90, 200);
+}
+
+.header-market {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+#image-prdct {
+  width: 200px;
+  height: 200px;
 }

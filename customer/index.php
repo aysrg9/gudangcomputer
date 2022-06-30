@@ -15,8 +15,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
-    <!-- My Css -->
+
+    <!-- My CSS -->
     <link rel="stylesheet" href="../css/market.css">
 
     <!-- Bootsrap Icon -->
@@ -59,6 +61,97 @@
         </div>
     </section>
     <!-- Akhir Navbar -->
+
+    <!-- Slide -->
+    <section class="container">
+        <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../image/slide/amd.jpg" class="d-block w-100" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="../image/slide/prosesor.jpg" class="d-block w-100" alt="">
+                </div>
+                <div class="carousel-item">
+                    <img src="../image/slide/vga.jpg" class="d-block w-100" alt="">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Akhir Slide -->
+
+        <!-- Content Produk -->
+        <!-- Header -->
+        <div class="mt-4 bg-primary">
+            <h1 class="header-market text-uppercase text-center text-white">Product</h1>
+        </div>
+        <!-- Akhir Header -->
+
+        <!-- Product -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center">
+                        <img id="image-prdct" src="../image/62bb3e8ee71d9.png" class="card-img-top" alt="...">
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-center">MSI RTX 3090 TI</h5>
+                        <p class="card-text text-center">Rp 10.222.999</p>
+                        <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
+                                class="btn btn-primary">ORDER</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center">
+                        <img id="image-prdct" src="../image/62bb3f4a6be9a.png" class="card-img-top" alt="...">
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-center">Prosesor Intel® Core™ i3-12100F</h5>
+                        <p class="card-text text-center">Rp 1.899.999</p>
+                        <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
+                                class="btn btn-primary">ORDER</button></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center">
+                        <img id="image-prdct" src="../image/62bb40052e5c0.png" class="card-img-top" alt="...">
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-center">V-GeN SSD M.2 NVMe</h5>
+                        <p class="card-text text-center">Rp 1.450.000</p>
+                        <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
+                                class="btn btn-primary">ORDER</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Akhir Product -->
+    </section>
+    <!-- Akhir Content Produk -->
 
     <!-- JS Bootstarp -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
