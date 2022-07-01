@@ -63,43 +63,82 @@
     </section>
     <!-- Akhir Navbar -->
 
-    <!-- View Produk -->
-    <section class="container">
-        <div class="card mb-5 mt-5">
-            <div class=" row g-0">
-                <div class="col-md-4">
-                    <p class="text-center mt-4">
-                        <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="...">
-                    </p>
-                </div>
-                <div class="col-md-8 mb-">
-                    <div class="card-body">
-                        <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
-                        <h5 class="card-title fw-bold mb-3">Rp 10.222.999</h5>
-                        <p class="card-text">The products sold at the <span class="fw-bold">Gudang Computer</span> have
-                            been confirmed
-                            to be 100%
-                            original
-                            and have an official guarantee, for a warranty claim, you just have to come to our store.
-                            Thank you.</p>
-                        <p class="card-text"><small class="text-muted"><a href="">Read more about the product
-                                    here</a></small></p>
-                        <p class="card-text"><small class="text-muted">Delivery Free Shipping</small></p>
-                        <p class="card-text mb-5"><small class="text-muted">NOTE Minimum Purchase *1</small></p>
-                        <div class="button-buy-chart">
-                            <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
-                            <p><button class="fw-bold btn btn-primary">ADD TO CHART</button></p>
-                        </div>
-                        <div class="icon fs-4">
-                            <i class="bi bi-share pe-2"></i>
-                            <i class="bi bi-bookmark"></i>
+    <!-- Alert -->
+    <section class="container mb-5">
+        <div class="alert alert-warning d-flex align-items-center mt-3 border border-secondary" role="alert">
+            <div class="text-dark fw-bold">
+                <i class="bi bi-box"></i> Choose the Free Shipping voucher to enjoy Free Shipping. Happy Shopping !
+            </div>
+        </div>
+        <!-- Akhir Alert -->
+
+        <!-- Cart -->
+        <section id="page-cart" style="height:100vh;">
+            <div class="card mb-3 border border-primary">
+                <div class=" row g-0">
+                    <div class="col-md-4">
+                        <p class="text-center mt-4">
+                            <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="..."
+                                style="width: 200px;">
+                        </p>
+                    </div>
+                    <div class="col-md-8 mb-">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
+                            <h5 class="card-title fw-bold">Rp 10.222.999</h5>
+                            <p class="card-text"><small class="text-muted">M-Banking Payment Only</small></p>
+                            <div class="button-buy">
+                                <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div class=" card mb-3 border border-primary">
+                <div class=" row g-0">
+                    <div class="col-md-4">
+                        <p class="text-center mt-4">
+                            <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="..."
+                                style="width: 200px;">
+                        </p>
+                    </div>
+                    <div class="col-md-8 mb-">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
+                            <h5 class="card-title fw-bold">Rp 10.222.999</h5>
+                            <p class="card-text"><small class="text-muted">M-Banking Payment Only</small></p>
+                            <div class="button-buy">
+                                <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" card mb-3 border border-primary">
+                <div class=" row g-0">
+                    <div class="col-md-4">
+                        <p class="text-center mt-4">
+                            <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="..."
+                                style="width: 200px;">
+                        </p>
+                    </div>
+                    <div class="col-md-8 mb-">
+                        <div class="card-body">
+                            <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
+                            <h5 class="card-title fw-bold">Rp 10.222.999</h5>
+                            <p class="card-text"><small class="text-muted">M-Banking Payment Only</small></p>
+                            <div class="button-buy">
+                                <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </section>
-    <!-- Akhir View Produk -->
+    <!-- Akhir Cart -->
 
     <!-- Footer -->
     <footer id="footer" class="py-4 bg-primary position-relative">

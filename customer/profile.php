@@ -41,7 +41,7 @@
                         <a class="nav-link text-white" href="index.php">Home <i class="bi bi-house"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Cart <i class="bi bi-cart3"></i></a>
+                        <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink"
