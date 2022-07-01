@@ -24,6 +24,8 @@
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
+
+
     <title>Gudang Computer</title>
 </head>
 
@@ -107,57 +109,79 @@
         <!-- Akhir Header -->
 
         <!-- Product -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
+        <div class="row row-cols-1 row-cols-md-5 g-3">
+            <a class="col" href="view.php" style="text-decoration: none;">
                 <div class="card h-100 border border-primary">
-                    <p class="text-center">
+                    <p class="text-center mt-2">
                         <img id="image-prdct" src="../image/62bb3e8ee71d9.png" class="card-img-top" alt="...">
                     </p>
-                    <div class="card-body bg-primary text-white">
-                        <h5 class="card-title fw-bold text-center">MSI RTX 3090 TI</h5>
-                        <p class="card-text text-center">Rp 10.222.999</p>
-                        <p class="card-text text-center"><a href="view.php"><button
-                                    class="btn btn-light fw-bold">VIEW</button></a>
-                            <button class="btn btn-light fw-bold">BUY NOW</button>
-                            <button class="btn btn-light fw-bold">ADD TO CHART</button>
-                        </p>
+                    <div class="card-body">
+                        <p class="card-title text-center text-dark fs-5">MSI RTX 3090 TI</p>
+                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="col">
+
+            <a class="col" href="view.php" style="text-decoration: none;">
                 <div class="card h-100 border border-primary">
-                    <p class="text-center">
+                    <p class="text-center mt-2">
                         <img id="image-prdct" src="../image/62bb3f4a6be9a.png" class="card-img-top" alt="...">
                     </p>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold text-center">Prosesor Intel® Core™ i3-12100F</h5>
-                        <p class="card-text text-center">Rp 1.899.999</p>
-                        <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
-                                class="btn btn-primary">BUY NOW</button>
-                            <button class="btn btn-primary">ADD TO CHART</button>
-                        </p>
-
+                        <p class="card-title text-center text-dark fs-5">Prosesor Intel® Core™ i3-12100F</p>
+                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
                     </div>
                 </div>
-            </div>
+            </a>
 
-            <div class="col">
+            <a class="col" href="view.php" style="text-decoration: none;">
                 <div class="card h-100 border border-primary">
-                    <p class="text-center">
+                    <p class="text-center mt-2">
                         <img id="image-prdct" src="../image/62bb40052e5c0.png" class="card-img-top" alt="...">
                     </p>
                     <div class="card-body">
-                        <h5 class="card-title fw-bold text-center">V-GeN SSD M.2 NVMe</h5>
-                        <p class="card-text text-center">Rp 1.450.000</p>
-                        <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
-                                class="btn btn-primary">BUY NOW</button>
-                            <button class="btn btn-primary">ADD TO CHART</button>
-                        </p>
-
+                        <p class="card-title text-center text-dark fs-5">V-GeN SSD M.2 NVMe</p>
+                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
                     </div>
                 </div>
-            </div>
+            </a>
+
+            <a class="col" href="view.php" style="text-decoration: none;">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center mt-2">
+                        <img id="image-prdct" src="../image/62bc18e6e5998.png" class="card-img-top" alt="...">
+                    </p>
+                    <div class="card-body">
+                        <p class="card-title text-center text-dark fs-5">GTX 1660 Super</p>
+                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
+                    </div>
+                </div>
+            </a>
+
+            <a class="col" href="view.php" style="text-decoration: none;">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center mt-2">
+                        <img id="image-prdct" src="../image/62bc1cb0c5097.png" class="card-img-top" alt="...">
+                    </p>
+                    <div class="card-body">
+                        <p class="card-title text-center text-dark fs-5">AMD Ryzen™ 9 5950X Desktop Processors</p>
+                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
+                    </div>
+                </div>
+            </a>
+
+            <a class="col" href="view.php" style="text-decoration: none;">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center mt-2">
+                        <img id="image-prdct" src="../image/62bb3e8ee71d9.png" class="card-img-top" alt="...">
+                    </p>
+                    <div class="card-body">
+                        <p class="card-title text-center text-dark fs-5">MSI RTX 3090 TI</p>
+                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
+                    </div>
+                </div>
+            </a>
         </div>
         <!-- Akhir Product -->
     </section>
@@ -180,7 +204,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
 
 </body>
 
