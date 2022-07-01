@@ -136,8 +136,8 @@ if (isset($_POST["cari"])) {
                     <td><a class="text-white" href="<?= $row["spesifikasi"] ?>" target="_blank">CLICK HERE</a></td>
                     <td><?= $row["stock"] ?></td>
                     <td>Rp <?= $row["price"] ?></td>
-                    <td><a href="../image/<?= $row["gambar"] ?>" target="_blank"><img
-                                src="../image/<?= $row["gambar"] ?>" alt="" width="80px"></a></td>
+                    <td><a href="../image/product/<?= $row["gambar"] ?>" target="_blank"><img
+                                src="../image/product/<?= $row["gambar"] ?>" alt="" width="80px"></a></td>
                 </tr>
 
                 <?php $i++ ?>

@@ -158,7 +158,7 @@ function upload()
     $namaFileBaru .= $ekstensiGambar;
 
 
-    move_uploaded_file($tmpName, 'image/' . $namaFileBaru);
+    move_uploaded_file($tmpName, 'image/product/' . $namaFileBaru);
     return $namaFileBaru;
 }
 

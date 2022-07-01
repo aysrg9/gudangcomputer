@@ -1,3 +1,15 @@
+<?php
+
+require '../functions.php';
+
+$product = query("SELECT * FROM product");
+
+//tombol cari di ketik
+if (isset($_POST["cari"])) {
+    $product = cari($_POST["keyword"]);
+}
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -57,9 +69,10 @@
 
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
-            <form method="" action="" class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+            <form method="post" action="" class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
+                    autocomplete="off">
+                <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </section>
@@ -110,78 +123,26 @@
 
         <!-- Product -->
         <div class="row row-cols-1 row-cols-md-5 g-3">
-            <a class="col" href="view.php" style="text-decoration: none;">
+
+            <?php $i = 1; ?>
+            <?php foreach ($product as $row) : ?>
+
+            <a class="col" href="view.php?id=<?= $row["id"] ?>" style="text-decoration: none;">
                 <div class="card h-100 border border-primary">
                     <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/62bb3e8ee71d9.png" class="card-img-top" alt="...">
+                        <img id="image-prdct" src="../image/product/<?= $row["gambar"] ?>" class="card-img-top"
+                            alt="...">
                     </p>
                     <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5">MSI RTX 3090 TI</p>
-                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
+                        <p class="card-title text-center text-dark fs-5"><?= $row["nama"] ?></p>
+                        <p class="card-text fw-bold text-primary text-center">Rp <?= $row["price"] ?></p>
                     </div>
                 </div>
             </a>
 
+            <?php $i++ ?>
+            <?php endforeach; ?>
 
-            <a class="col" href="view.php" style="text-decoration: none;">
-                <div class="card h-100 border border-primary">
-                    <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/62bb3f4a6be9a.png" class="card-img-top" alt="...">
-                    </p>
-                    <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5">Prosesor Intel® Core™ i3-12100F</p>
-                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
-                    </div>
-                </div>
-            </a>
-
-            <a class="col" href="view.php" style="text-decoration: none;">
-                <div class="card h-100 border border-primary">
-                    <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/62bb40052e5c0.png" class="card-img-top" alt="...">
-                    </p>
-                    <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5">V-GeN SSD M.2 NVMe</p>
-                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
-                    </div>
-                </div>
-            </a>
-
-            <a class="col" href="view.php" style="text-decoration: none;">
-                <div class="card h-100 border border-primary">
-                    <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/62bc18e6e5998.png" class="card-img-top" alt="...">
-                    </p>
-                    <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5">GTX 1660 Super</p>
-                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
-                    </div>
-                </div>
-            </a>
-
-            <a class="col" href="view.php" style="text-decoration: none;">
-                <div class="card h-100 border border-primary">
-                    <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/62bc1cb0c5097.png" class="card-img-top" alt="...">
-                    </p>
-                    <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5">AMD Ryzen™ 9 5950X Desktop Processors</p>
-                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
-                    </div>
-                </div>
-            </a>
-
-            <a class="col" href="view.php" style="text-decoration: none;">
-                <div class="card h-100 border border-primary">
-                    <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/62bb3e8ee71d9.png" class="card-img-top" alt="...">
-                    </p>
-                    <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5">MSI RTX 3090 TI</p>
-                        <p class="card-text fw-bold text-primary text-center">Rp 10.222.999</p>
-                    </div>
-                </div>
-            </a>
         </div>
         <!-- Akhir Product -->
     </section>

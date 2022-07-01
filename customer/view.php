@@ -1,3 +1,24 @@
+<?php
+
+require '../functions.php';
+
+$product = query("SELECT * FROM product");
+
+// ambil data di url 
+$id = $_GET["id"];
+
+//query data product berdasarkan id
+$prdct = query("SELECT * FROM product WHERE id = $id")[0];
+
+
+//tombol cari di ketik
+if (isset($_POST["cari"])) {
+    $product = cari($_POST["keyword"]);
+}
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -69,13 +90,13 @@
             <div class=" row g-0">
                 <div class="col-md-4">
                     <p class="text-center mt-4">
-                        <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="...">
+                        <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start" alt="...">
                     </p>
                 </div>
                 <div class="col-md-8 mb-">
                     <div class="card-body">
-                        <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
-                        <h5 class="card-title fw-bold mb-3">Rp 10.222.999</h5>
+                        <h3 class="card-title fw-bold"><?= $prdct['nama']; ?></h3>
+                        <h5 class="card-title fw-bold mb-3">Rp <?= $prdct['price']; ?></h5>
                         <p class="card-text">The products sold at the <span class="fw-bold">Gudang Computer</span> have
                             been confirmed
                             to be 100%
