@@ -60,7 +60,7 @@ if (isset($_POST["cari"])) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php">Home <i class="bi bi-house"></i></a>
+                        <a class="nav-link text-white" href="../index.php">Home <i class="bi bi-house"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
@@ -103,7 +103,9 @@ if (isset($_POST["cari"])) {
                             original
                             and have an official guarantee, for a warranty claim, you just have to come to our store.
                             Thank you.</p>
-                        <p class="card-text"><small class="text-muted"><a href="">Read more about the product
+                        <p class="card-text"><small class="text-muted"><a href="<?= $prdct["spesifikasi"]; ?>"
+                                    target="_blank">Read more
+                                    about the product
                                     here</a></small></p>
                         <p class="card-text"><small class="text-muted">Delivery Free Shipping</small></p>
                         <p class="card-text mb-5"><small class="text-muted">NOTE Minimum Purchase *1</small></p>

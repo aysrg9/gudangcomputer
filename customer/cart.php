@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="index.php">Home <i class="bi bi-house"></i></a>
+                        <a class="nav-link text-white" href="../index.php">Home <i class="bi bi-house"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>

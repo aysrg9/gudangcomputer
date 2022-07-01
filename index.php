@@ -1,6 +1,6 @@
 <?php
 
-require '../functions.php';
+require 'functions.php';
 
 $product = query("SELECT * FROM product");
 
@@ -31,7 +31,7 @@ if (isset($_POST["cari"])) {
 
 
     <!-- My CSS -->
-    <link rel="stylesheet" href="../css/market.css">
+    <link rel="stylesheet" href="./css/market.css">
 
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
@@ -56,10 +56,10 @@ if (isset($_POST["cari"])) {
                         <a class="nav-link text-white" href="index.php">Home <i class="bi bi-house"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
+                        <a class="nav-link text-white" href="./customer/cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.php">Profile <i
+                        <a class="nav-link text-white" href="./customer/profile.php">Profile <i
                                 class="bi bi-person-circle"></i></a>
                     </li>
                 </ul>
@@ -91,13 +91,13 @@ if (isset($_POST["cari"])) {
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="../image/slide/amd.jpg" class="d-block w-100" alt="">
+                    <img src="./image/slide/amd.jpg" class="d-block w-100" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="../image/slide/prosesor.jpg" class="d-block w-100" alt="">
+                    <img src="./image/slide/prosesor.jpg" class="d-block w-100" alt="">
                 </div>
                 <div class="carousel-item">
-                    <img src="../image/slide/vga.jpg" class="d-block w-100" alt="">
+                    <img src="./image/slide/vga.jpg" class="d-block w-100" alt="">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
@@ -130,7 +130,7 @@ if (isset($_POST["cari"])) {
             <a class="col" href="view.php?id=<?= $row["id"] ?>" style="text-decoration: none;">
                 <div class="card h-100 border border-primary">
                     <p class="text-center mt-2">
-                        <img id="image-prdct" src="../image/product/<?= $row["gambar"] ?>" class="card-img-top"
+                        <img id="image-prdct" src="./image/product/<?= $row["gambar"] ?>" class="card-img-top"
                             alt="...">
                     </p>
                     <div class="card-body">
