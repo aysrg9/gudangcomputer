@@ -39,7 +39,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-uppercase">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Home <i class="bi bi-house"></i></a>
+                        <a class="nav-link text-white" href="index.php">Home <i class="bi bi-house"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Cart <i class="bi bi-cart3"></i></a>
@@ -116,8 +116,10 @@
                     <div class="card-body">
                         <h5 class="card-title fw-bold text-center">MSI RTX 3090 TI</h5>
                         <p class="card-text text-center">Rp 10.222.999</p>
-                        <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
-                                class="btn btn-primary">ORDER</button></p>
+                        <p class="card-text text-center"><a href="view.php"><button
+                                    class="btn btn-primary">VIEW</button></a>
+                            <button class="btn btn-primary">BUY NOW</button>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -131,7 +133,7 @@
                         <h5 class="card-title fw-bold text-center">Prosesor Intel® Core™ i3-12100F</h5>
                         <p class="card-text text-center">Rp 1.899.999</p>
                         <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
-                                class="btn btn-primary">ORDER</button></p>
+                                class="btn btn-primary">BUY NOW</button></p>
                     </div>
                 </div>
             </div>
@@ -145,7 +147,7 @@
                         <h5 class="card-title fw-bold text-center">V-GeN SSD M.2 NVMe</h5>
                         <p class="card-text text-center">Rp 1.450.000</p>
                         <p class="card-text text-center"><button class="btn btn-primary">VIEW</button> <button
-                                class="btn btn-primary">ORDER</button></p>
+                                class="btn btn-primary">BUY NOW</button></p>
                     </div>
                 </div>
             </div>

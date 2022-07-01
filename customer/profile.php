@@ -71,7 +71,7 @@
     <!-- Form My Profile -->
     <section class="container mb-5" style="background-color: white;">
         <!-- Header -->
-        <section class="jumbotron mb-4" style="margin-top: 25px;">
+        <section class="jumbotron mb-4 mt-5">
             <h1 class="display-5 fw-bold">My Profile</h1>
             <p>Manage your profile information to control, protect and secure your account</p>
         </section>
