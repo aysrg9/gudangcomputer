@@ -28,29 +28,23 @@ if (isset($_POST["login"])) {
     $username = mysqli_real_escape_string($db, $_POST["username"]);
     $password = mysqli_real_escape_string($db, $_POST["password"]);
     $result = mysqli_query($db, "SELECT * FROM customer WHERE username = '$username'");
-    $cariuser = mysqli_fetch_assoc($result);
+    $user = mysqli_fetch_assoc($result);
 
     // cek username
     if (mysqli_num_rows($result) === 1) {
         // cek password
         $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $cariuser["password"])) {
+        if (password_verify($password, $user["password"])) {
             // set session
-            $_SESSION['id'] = $cariuser['id'];
-            $_SESSION['username'] = $cariuser['username'];
-            $_SESSION['nama'] = $cariuser['nama'];
-            $_SESSION['email'] = $cariuser['email'];
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['nama'] = $user['nama'];
+            $_SESSION['email'] = $user['email'];
 
             $_SESSION["login"] = true;
 
-            //     // cek remember me
-            //     if (isset($_POST['remember'])) {
-            //         // buat cookie
-            //         setcookie('id', $row['id'], time() + 60);
-            //         setcookie('key', hash('sha256', $row['username']), time() + 60);
-            //     }
-            //     header("Location: ../index.php");
-            //     exit;
+            header("Location: ../index.php");
+            exit;
         }
     }
 

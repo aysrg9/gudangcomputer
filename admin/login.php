@@ -1,4 +1,4 @@
-<?php
+k<?php
 
 session_start();
 require '../functions.php';

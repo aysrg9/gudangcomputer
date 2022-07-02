@@ -64,7 +64,7 @@ if (isset($_POST["cari"])) {
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white"
-                        href="../gudangcomputer/customer/profile.php">Login
+                        href="../gudangcomputer/customer/login.php">Login
                         <i class="bi bi-box-arrow-in-right"></i></a>
                     </li>
                     ';
