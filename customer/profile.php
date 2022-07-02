@@ -1,3 +1,38 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
+
+// konek function
+require '../functions.php';
+
+// // cek apakah tombol submit sudah di tekan atau belum 
+// if (isset($_POST["submit"])) {
+
+//     // cek apakah data berhasil ditambahkan atau tidak
+//     if (ubah($_POST) > 0) {
+//         echo "
+//             <script>
+//                 alert('Successfully!');
+//                 document.location.href = 'profile.php';
+//             </script>
+//        ";
+//     } else {
+//         echo "
+//         <script>
+//             alert('Failed To Change!');
+//             document.location.href = 'profile.php';
+//         </script>
+//         ";
+//     }
+// }
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -51,8 +86,10 @@
                         <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="navbarDarkDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">My Order</a></li>
                             <li><a class="dropdown-item" href="#">My Voucher</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="logout.php"
+                                    onclick="return alert('Are You Sure?')">Logout</a></li>
                         </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -85,13 +122,16 @@
                 <p class="mt-2"><button class="btn btn-primary">Select Image</button></p>
             </div>
             <div class="mb-4">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Username" value="">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                    value="<?= $_SESSION["username"] ?>">
             </div>
             <div class="mb-4">
-                <input type="url" class="form-control" id="spesifikasi" name="spesifikasi" placeholder="Name" value="">
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name"
+                    value="<?= $_SESSION["nama"] ?>">
             </div>
             <div class="mb-4">
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Email" value="">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                    value="<?= $_SESSION["email"] ?>">
             </div>
             <button type="submit" class="btn btn-primary mb-4" name="submit">CHANGE</button>
         </form>

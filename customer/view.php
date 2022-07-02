@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require '../functions.php';
 
 $product = query("SELECT * FROM product");
@@ -65,10 +67,26 @@ if (isset($_POST["cari"])) {
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
+                    <?php
+                    if (!isset($_SESSION['login'])) {
+                        echo '
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="profile.php">Profile <i
-                                class="bi bi-person-circle"></i></a>
+                        <a class="nav-link text-white"
+                        href="../gudangcomputer/customer/profile.php">Login
+                        <i class="bi bi-box-arrow-in-right"></i></a>
                     </li>
+                    ';
+                    } else {
+                        if ($_SESSION) {
+                            echo '
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="../gudangcomputer/customer/profile.php">Profile
+                        <i class="bi bi-person-circle"></i></a>
+                    </li>
+                        ';
+                        }
+                    }
+                    ?>
                 </ul>
             </div>
         </div>

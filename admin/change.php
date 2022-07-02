@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if (!isset($_SESSION["login"])) {
@@ -14,7 +15,6 @@ $id = $_GET["id"];
 
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id = $id")[0];
-
 
 // cek apakah tombol submit sudah di tekan atau belum 
 if (isset($_POST["submit"])) {
