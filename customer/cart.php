@@ -82,7 +82,7 @@ if (!isset($_SESSION["login"])) {
 
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
-            <form method="post" action="seacrh.php" class="d-flex">
+            <form method="get" action="seacrh.php" class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
                     autocomplete="off">
                 <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>

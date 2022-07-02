@@ -9,6 +9,10 @@ $product = query("SELECT * FROM product");
 // ambil data di url 
 $id = $_GET["id"];
 
+if (isset($_GET["cari"])) {
+    $keyword = $_GET["keyword"];
+}
+
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id = $id")[0];
 
@@ -87,7 +91,7 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
 
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
-            <form method="post" action="seacrh.php" class="d-flex">
+            <form method="get" action="seacrh.php" class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
                     autocomplete="off">
                 <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>

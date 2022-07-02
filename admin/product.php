@@ -11,10 +11,10 @@ require '../functions.php';
 
 $product = query("SELECT * FROM product");
 
-//tombol cari di ketik
-if (isset($_POST["cari"])) {
-    $product = cari($_POST["keyword"]);
-}
+// //tombol cari di ketik
+// if (isset($_POST["cari"])) {
+//     $product = cari($_POST["keyword"]);
+// }
 
 
 ?>
