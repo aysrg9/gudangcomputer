@@ -5,11 +5,6 @@ require 'functions.php';
 
 $product = query("SELECT * FROM product");
 
-//tombol cari di ketik
-if (isset($_POST["cari"])) {
-    $product = cari($_POST["keyword"]);
-}
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -86,7 +81,7 @@ if (isset($_POST["cari"])) {
 
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
-            <form method="post" action="" class="d-flex">
+            <form method="get" action="./customer/seacrh.php" class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
                     autocomplete="off">
                 <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>

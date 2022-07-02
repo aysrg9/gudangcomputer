@@ -158,7 +158,7 @@ function upload()
     $namaFileBaru .= $ekstensiGambar;
 
 
-    move_uploaded_file($tmpName, 'image/product/' . $namaFileBaru);
+    move_uploaded_file($tmpName, '../image/product/' . $namaFileBaru);
     return $namaFileBaru;
 }
 
@@ -166,7 +166,7 @@ function hapus($query)
 {
     global $db;
     $file = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM product WHERE id='$query'"));
-    unlink('image/' . $file["gambar"]);
+    unlink('../image/product/' . $file["gambar"]);
     $hapus = "DELETE FROM product WHERE id='$query'";
     mysqli_query($db, $hapus);
     return mysqli_affected_rows($db);
@@ -205,14 +205,14 @@ function ubah($data)
     return mysqli_affected_rows($db);
 }
 
-function cari($keyword)
-{
-    $query = "SELECT * FROM product
-                WHERE
-            nama LIKE '%$keyword%' OR
-            spesifikasi LIKE '%$keyword%' OR
-            stock LIKE '%$keyword%' OR
-            price LIKE '%$keyword%'
-            ";
-    return query($query);
-}
+// function cari($keyword)
+// {
+//     $query = "SELECT * FROM product
+//                 WHERE
+//             nama LIKE '%$keyword%' OR
+//             spesifikasi LIKE '%$keyword%' OR
+//             stock LIKE '%$keyword%' OR
+//             price LIKE '%$keyword%'
+//             ";
+//     return query($query);
+// }

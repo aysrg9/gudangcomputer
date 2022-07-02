@@ -6,7 +6,9 @@ if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
 }
+
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -58,7 +60,7 @@ if (!isset($_SESSION["login"])) {
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white"
-                        href="../gudangcomputer/customer/profile.php">Login
+                        href="login.php">Login
                         <i class="bi bi-box-arrow-in-right"></i></a>
                     </li>
                     ';
@@ -66,7 +68,7 @@ if (!isset($_SESSION["login"])) {
                         if ($_SESSION) {
                             echo '
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="../gudangcomputer/customer/profile.php">Profile
+                        <a class="nav-link text-white" href="profile.php">Profile
                         <i class="bi bi-person-circle"></i></a>
                     </li>
                         ';
@@ -80,9 +82,10 @@ if (!isset($_SESSION["login"])) {
 
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
-            <form method="" action="" class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+            <form method="post" action="seacrh.php" class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
+                    autocomplete="off">
+                <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>
             </form>
         </div>
     </section>

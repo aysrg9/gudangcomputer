@@ -4,16 +4,9 @@ session_start();
 
 require '../functions.php';
 
-$product = query("SELECT * FROM product");
-
-// ambil data di url 
-$id = $_GET["id"];
-
-//query data product berdasarkan id
-$prdct = query("SELECT * FROM product WHERE id = $id")[0];
+$keyword = $_GET['keyword'];
 
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -40,6 +33,11 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
+    <style>
+    body {
+        height: 100vh;
+    }
+    </style>
     <title>Gudang Computer</title>
 </head>
 
@@ -87,7 +85,7 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
 
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
-            <form method="post" action="seacrh.php" class="d-flex">
+            <form method="get" action="" class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
                     autocomplete="off">
                 <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>
@@ -96,45 +94,47 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
     </section>
     <!-- Akhir Navbar -->
 
-    <!-- View Produk -->
-    <section class="container">
-        <div class="card mb-5 mt-5">
-            <div class=" row g-0">
-                <div class="col-md-4">
-                    <p class="text-center mt-4">
-                        <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start" alt="...">
+    <!-- Content Produk -->
+    <!-- Header -->
+    <section class="container mb-5">
+        <div class="mt-4 bg-primary">
+            <h1 class="header-market text-uppercase text-center text-white">Product</h1>
+        </div>
+        <!-- Akhir Header -->
+
+        <!-- Product -->
+        <div class="row row-cols-1 row-cols-md-5 g-3">
+            <?php
+
+            $query = mysqli_query($db, "SELECT * FROM product WHERE nama LIKE '%$keyword%' OR spesifikasi LIKE '%$keyword%' OR stock LIKE '%$keyword%' OR price LIKE '%$keyword%'");
+            $i = mysqli_num_rows($query);
+
+            if ($i > 0) {
+                while ($p = mysqli_fetch_array($query)) {
+            ?>
+
+            <a class="col" href="view.php?id=<?= $p["id"] ?>" style="text-decoration: none;">
+                <div class="card h-100 border border-primary">
+                    <p class="text-center mt-2">
+                        <img id="image-prdct" src="../image/product/<?= $p["gambar"] ?>" class="card-img-top" alt="...">
                     </p>
-                </div>
-                <div class="col-md-8 mb-">
                     <div class="card-body">
-                        <h3 class="card-title fw-bold"><?= $prdct['nama']; ?></h3>
-                        <h5 class="card-title fw-bold mb-3">Rp <?= $prdct['price']; ?></h5>
-                        <p class="card-text">The products sold at the <span class="fw-bold">Gudang Computer</span> have
-                            been confirmed
-                            to be 100%
-                            original
-                            and have an official guarantee, for a warranty claim, you just have to come to our store.
-                            Thank you.</p>
-                        <p class="card-text"><small class="text-muted"><a href="<?= $prdct["spesifikasi"]; ?>"
-                                    target="_blank">Read more
-                                    about the product
-                                    here</a></small></p>
-                        <p class="card-text"><small class="text-muted">Delivery Free Shipping</small></p>
-                        <p class="card-text mb-5"><small class="text-muted">NOTE Minimum Purchase *1</small></p>
-                        <div class="button-buy-chart">
-                            <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
-                            <p><button class="fw-bold btn btn-primary">ADD TO CHART</button></p>
-                        </div>
-                        <div class="icon fs-4">
-                            <i class="bi bi-share pe-2"></i>
-                            <i class="bi bi-bookmark"></i>
-                        </div>
+                        <p class="card-title text-center text-dark fs-5"><?= $p["nama"] ?></p>
+                        <p class="card-text fw-bold text-primary text-center">Rp <?= $p["price"] ?></p>
                     </div>
                 </div>
-            </div>
+            </a>
+
+            <?php
+                }
+            } else {
+                echo "<script>alert('data not found!')</script>";
+            }
+            ?>
+            <!-- Akhir Product -->
         </div>
     </section>
-    <!-- Akhir View Produk -->
+    <!-- Akhir Content Produk -->
 
     <!-- Footer -->
     <footer id="footer" class="py-4 bg-primary position-relative">
@@ -153,7 +153,6 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
 
 </body>
 
