@@ -44,7 +44,7 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <title>Gudang Computer</title>
+    <title>Gudang Computer Product</title>
 </head>
 
 <body>
@@ -125,10 +125,12 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
                                     here</a></small></p>
                         <p class="card-text"><small class="text-muted">Delivery Free Shipping</small></p>
                         <p class="card-text mb-5"><small class="text-muted">NOTE Minimum Purchase *1</small></p>
+
                         <div class="button-buy-chart">
                             <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
                             <p><button class="fw-bold btn btn-primary">ADD TO CHART</button></p>
                         </div>
+
                         <div class="icon fs-4">
                             <i class="bi bi-share pe-2"></i>
                             <i class="bi bi-bookmark"></i>

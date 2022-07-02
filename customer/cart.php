@@ -2,6 +2,8 @@
 
 session_start();
 
+require '../functions.php';
+
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
     exit;
@@ -35,7 +37,7 @@ if (!isset($_SESSION["login"])) {
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <title>Gudang Computer</title>
+    <title>Gudang Computer Cart</title>
 </head>
 
 <body>
@@ -101,50 +103,9 @@ if (!isset($_SESSION["login"])) {
         <!-- Akhir Alert -->
 
         <!-- Cart -->
+        <!-- checkout -->
         <section id="page-cart" style="height:100vh;">
             <div class="card mb-3 border border-primary">
-                <div class=" row g-0">
-                    <div class="col-md-4">
-                        <p class="text-center mt-4">
-                            <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="..."
-                                style="width: 200px;">
-                        </p>
-                    </div>
-                    <div class="col-md-8 mb-">
-                        <div class="card-body">
-                            <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
-                            <h5 class="card-title fw-bold">Rp 10.222.999</h5>
-                            <p class="card-text"><small class="text-muted">M-Banking Payment Only</small></p>
-                            <div class="button-buy">
-                                <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class=" card mb-3 border border-primary">
-                <div class=" row g-0">
-                    <div class="col-md-4">
-                        <p class="text-center mt-4">
-                            <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="..."
-                                style="width: 200px;">
-                        </p>
-                    </div>
-                    <div class="col-md-8 mb-">
-                        <div class="card-body">
-                            <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
-                            <h5 class="card-title fw-bold">Rp 10.222.999</h5>
-                            <p class="card-text"><small class="text-muted">M-Banking Payment Only</small></p>
-                            <div class="button-buy">
-                                <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class=" card mb-3 border border-primary">
                 <div class=" row g-0">
                     <div class="col-md-4">
                         <p class="text-center mt-4">

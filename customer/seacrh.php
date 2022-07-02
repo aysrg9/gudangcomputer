@@ -34,11 +34,11 @@ $keyword = $_GET['keyword'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <style>
-    body {
+    #hasil {
         height: 100vh;
     }
     </style>
-    <title>Gudang Computer</title>
+    <title>Gudang Computer Search</title>
 </head>
 
 <body>
@@ -96,7 +96,7 @@ $keyword = $_GET['keyword'];
 
     <!-- Content Produk -->
     <!-- Header -->
-    <section class="container mb-5">
+    <section id="hasil" class="container mb-5">
         <div class="mt-4 bg-primary">
             <h1 class="header-market text-uppercase text-center text-white">Product</h1>
         </div>
