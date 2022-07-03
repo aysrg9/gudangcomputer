@@ -68,14 +68,12 @@ $keyword = $_GET['keyword'];
                     </li>
                     ';
                     } else {
-                        if ($_SESSION) {
-                            echo '
+                        echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="profile.php">Profile
                         <i class="bi bi-person-circle"></i></a>
                     </li>
                         ';
-                        }
                     }
                     ?>
                 </ul>

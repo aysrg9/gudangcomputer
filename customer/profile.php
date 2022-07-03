@@ -7,15 +7,14 @@ if (!isset($_SESSION["login"])) {
     exit;
 }
 
-
 // konek function
 require '../functions.php';
 
-// // cek apakah tombol submit sudah di tekan atau belum 
+// cek apakah tombol submit sudah di tekan atau belum 
 // if (isset($_POST["submit"])) {
 
 //     // cek apakah data berhasil ditambahkan atau tidak
-//     if (ubah($_POST) > 0) {
+//     if (changeprofile($_POST) > 0) {
 //         echo "
 //             <script>
 //                 alert('Successfully!');
@@ -110,7 +109,7 @@ require '../functions.php';
     <section class="container mb-5" style="background-color: white;">
         <!-- Header -->
         <section class="jumbotron mb-4 mt-5">
-            <h1 class="display-5 fw-bold">My Profile</h1>
+            <h1 class="display-5 fw-bold">Profile <?php echo $_SESSION['nama'] ?></h1>
             <p>Manage your profile information to control, protect and secure your account</p>
         </section>
         <!-- Akhir Header -->

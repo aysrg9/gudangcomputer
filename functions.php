@@ -205,6 +205,36 @@ function ubah($data)
     return mysqli_affected_rows($db);
 }
 
+// function changeprofile($data)
+// {
+//     global $db;
+//     //ambil dari data dari tiap elemen dalam form
+//     $id = $data["id"];
+//     $username = htmlspecialchars($data["username"]);
+//     $nama = htmlspecialchars($data["nama"]);
+//     $email = htmlspecialchars($data["email"]);
+
+//     // cek apakah user pilih gambar baru atau tidak 
+//     // $gambarLama = htmlspecialchars($data["gambarLama"]);
+//     // if ($_FILES['gambar']['error'] === 4) {
+//     //     $gambar = $gambarLama;
+//     // } else {
+//     //     $gambar = upload();
+//     // }
+
+//     //query insert data
+//     $query = "UPDATE customer SET 
+//                 username = '$username',
+//                 nama = '$nama',
+//                 email = '$email'
+
+//                 WHERE id = $id
+//                 ";
+//     mysqli_query($db, $query);
+
+//     return mysqli_affected_rows($db);
+// }
+
 // function cari($keyword)
 // {
 //     $query = "SELECT * FROM product
