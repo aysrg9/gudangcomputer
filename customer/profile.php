@@ -6,7 +6,7 @@ if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 } else {
     $id = $_SESSION['id'];
-    $gambar = $_SESSION['gambar'];
+    $picture = $_SESSION['picture'];
     $username = $_SESSION['username'];
     $nama = $_SESSION['nama'];
     $email = $_SESSION['email'];
@@ -14,6 +14,8 @@ if (!isset($_SESSION["login"])) {
 
 // konek function
 require '../functions.php';
+
+$profile = query("SELECT * FROM customer");
 
 // apakah tombol submit sudah di tekan atau belum 
 if (isset($_POST["submit"])) {
@@ -35,12 +37,6 @@ if (isset($_POST["submit"])) {
         </script>
         ";
     }
-
-    $_SESSION['id'] = $_POST['id'];
-    $_SESSION['gambar'] = $_POST['gambar'];
-    $_SESSION['username'] = $_POST['username'];
-    $_SESSION['nama'] = $_POST['nama'];
-    $_SESSION['email'] = $_POST['email'];
 }
 
 ?>
@@ -129,17 +125,14 @@ if (isset($_POST["submit"])) {
         <!-- Form Data -->
         <form action="" method="post" enctype="multipart/form-data">
 
+            <input type="hidden" name="pictureOld" value="<?= $_SESSION["picture"]; ?>">
+
             <div class="mb-4 text-center">
                 <img class="rounded-circle border border-primary mb-3" width="200px" height="200px"
-                    src="../image/profile/<?= $_SESSION["gambar"] ?>" alt="" id="gambar" name="gambar">
+                    src="../image/profile/<?= $_SESSION["picture"] ?>" alt="" id="" name="">
 
-                <p id="imageupload">
-                    <label for="uploadimg">
-                        <a class="btn btn-primary btn-sm" rel="nofollow"><span
-                                class='glyphicon glyphicon-paperclip'></span> SELECT IMAGE</a>
-                    </label>
-                    <input type="file" name="uploadimg" id="uploadimg" class="d-none">
-                </p>
+                <input type="file" class="form-control" id="picture" name="picture" placeholder="Image"
+                    value="<?= $_SESSION["picture"]; ?>">
 
                 <!-- <p class="mt-2"><button type="file" class="btn btn-primary">SELECT IMAGE</button></p> -->
             </div>

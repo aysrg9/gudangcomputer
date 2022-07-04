@@ -50,7 +50,7 @@ $product = query("SELECT * FROM product");
 
     }
     </style>
-    <title>Tables</title>
+    <title>Product</title>
 </head>
 
 <body>

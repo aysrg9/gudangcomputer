@@ -58,9 +58,9 @@ function registrasic($data)
 {
     global $db;
 
-    $gambar = strtolower($data["gambar"]);
+    $picture = strtolower($data["picture"]);
     $username = strtolower(stripslashes($data["username"]));
-    $name = strtolower(stripslashes($data["name"]));
+    $name = (stripslashes($data["name"]));
     $email = strtolower(stripslashes($data["email"]));
     $password = mysqli_real_escape_string($db, $data["password"]);
     $password2 = mysqli_real_escape_string($db, $data["password2"]);
@@ -90,7 +90,7 @@ function registrasic($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //tambahkan user baru ke db
-    mysqli_query($db, "INSERT INTO customer VALUES(id,'$gambar','$username','$name','$email','$password')");
+    mysqli_query($db, "INSERT INTO customer VALUES(id,'$picture','$username','$name','$email','$password')");
     return mysqli_affected_rows($db);
 }
 
@@ -115,53 +115,6 @@ function tambah($data)
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);
-}
-
-function uploadprofile()
-{
-    $namaFile = $_FILES['gambar']['name'];
-    $ukuranFile = $_FILES['gambar']['size'];
-    $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['tmp_name'];
-
-    //cek apakah tidak ada gambar yg diupload
-    if ($error === 4) {
-        echo "<script>
-        alert('pilih gambar terlebih dahulu!');
-            </script>";
-        return false;
-    }
-
-    //cek apakah yang diupload adalah gambar
-    $ekstensiGambarValid = ['JPG', 'jpeg', 'png'];
-    $ekstensiGambar = explode('.', $namaFile);
-    // fungsi explode itu string jadi array , kalau nama 
-    // filenya qibar.jpg itu menjadi ['qibar','jpg']
-    $ekstensiGambar = strtolower(end($ekstensiGambar));
-    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-        echo "<script>
-        alert('Yang anda upload bukan gambar');
-            </script>";
-        return false;
-    }
-
-    //cek jika ukurannya terlalu besar
-    if ($ukuranFile > 2000000) {
-        echo "<script>
-        alert('Ukuran gambar terlalu besar !');
-            </script>";
-        return false;
-    }
-
-    // lolos pengecekan, gambar siap di upload
-    // dan generate nama baru 
-    $namaFileBaru = uniqid();
-    $namaFileBaru .= '.';
-    $namaFileBaru .= $ekstensiGambar;
-
-
-    move_uploaded_file($tmpName, '../image/profile/' . $namaFileBaru);
-    return $namaFileBaru;
 }
 
 function upload()
@@ -211,16 +164,6 @@ function upload()
     return $namaFileBaru;
 }
 
-function hapus($query)
-{
-    global $db;
-    $file = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM product WHERE id='$query'"));
-    unlink('../image/product/' . $file["gambar"]);
-    $hapus = "DELETE FROM product WHERE id='$query'";
-    mysqli_query($db, $hapus);
-    return mysqli_affected_rows($db);
-}
-
 function ubah($data)
 {
     global $db;
@@ -249,9 +192,57 @@ function ubah($data)
 
                 WHERE id = $id
                 ";
-    mysqli_query($db, $query);
 
+    mysqli_query($db, $query);
     return mysqli_affected_rows($db);
+}
+
+function hapus($query)
+{
+    global $db;
+    $file = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM product WHERE id='$query'"));
+    unlink('../image/product/' . $file["gambar"]);
+    $hapus = "DELETE FROM product WHERE id='$query'";
+    mysqli_query($db, $hapus);
+    return mysqli_affected_rows($db);
+}
+
+function uploadpicture()
+{
+    $nameFile = $_FILES['picture']['name'];
+    $sizeFile = $_FILES['picture']['size'];
+    $tmpName = $_FILES['picture']['tmp_name'];
+
+    //cek apakah yang diupload adalah gambar
+    $extensionGambarValid = ['JPG', 'jpeg', 'png'];
+    $extensionGambar = explode('.', $nameFile);
+    // fungsi explode itu string jadi array , kalau nama 
+    // filenya qibar.jpg itu menjadi ['qibar','jpg']
+    $extensionGambar = strtolower(end($extensionGambar));
+    if (!in_array($extensionGambar, $extensionGambarValid)) {
+        echo "<script>
+        alert('Yang anda upload bukan gambar');
+            </script>";
+        return false;
+    }
+
+    //cek jika ukurannya terlalu besar
+    if ($sizeFile > 2000000) {
+        echo "<script>
+        alert('Ukuran gambar terlalu besar !');
+            </script>";
+        return false;
+    }
+
+    // lolos pengecekan, gambar siap di upload
+    // dan generate nama baru 
+    $nameFileBaru = uniqid();
+    $nameFileBaru .= '.';
+    $nameFileBaru .= $extensionGambar;
+
+
+    move_uploaded_file($tmpName, '../image/profile/' . $nameFileBaru);
+    return $nameFileBaru;
 }
 
 function changeprofile($data)
@@ -263,8 +254,17 @@ function changeprofile($data)
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
 
+    // cek apakah user pilih gambar baru atau tidak 
+    $pictureOld = htmlspecialchars($data["pictureOld"]);
+    if ($_FILES['picture']['error'] === 4) {
+        $picture = $pictureOld;
+    } else {
+        $picture = uploadpicture();
+    }
+
     //query insert data
-    $query = "UPDATE customer SET username = '$username', nama = '$nama', email = '$email' WHERE id = $id";
+    $query = "UPDATE customer SET picture = '$picture', username = '$username', nama = '$nama', email = '$email' WHERE id = $id";
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
