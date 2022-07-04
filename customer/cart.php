@@ -101,28 +101,26 @@ if (!isset($_SESSION["login"])) {
         <!-- Akhir Alert -->
 
         <!-- Cart -->
-        <!-- checkout -->
         <section id="page-cart" style="height:100vh;">
-            <div class="card mb-3 border border-primary">
-                <div class=" row g-0">
-                    <div class="col-md-4">
-                        <p class="text-center mt-4">
-                            <img src="../image/62bb3e8ee71d9.png" class="img-fluid rounded-start" alt="..."
-                                style="width: 200px;">
-                        </p>
-                    </div>
-                    <div class="col-md-8 mb-">
-                        <div class="card-body">
-                            <h3 class="card-title fw-bold">MSI RTX 3090 TI 12 GB</h3>
-                            <h5 class="card-title fw-bold">Rp 10.222.999</h5>
-                            <p class="card-text"><small class="text-muted">M-Banking Payment Only</small></p>
-                            <div class="button-buy">
-                                <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="table bg-primary container text-center text-white mb-5 fw-bold">
+                <tr class="text-uppercase">
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td><img src="../image/product/62bb3e8ee71d9.png" alt="" width="100px" height="100px"></td>
+                    <td>MSI RTX 3090 TI</td>
+                    <td>1</td>
+                    <td>Rp 10.999.999</td>
+                    <td>
+                        <p class="fs-3"><i class="bi bi-x-square-fill"></i></p>
+                    </td>
+                </tr>
+            </table>
         </section>
     </section>
     <!-- Akhir Cart -->

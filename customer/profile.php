@@ -4,32 +4,42 @@ session_start();
 
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
-    exit;
+} else {
+    $id = $_SESSION['id'];
+    $username = $_SESSION['username'];
+    $nama = $_SESSION['nama'];
+    $email = $_SESSION['email'];
 }
 
 // konek function
 require '../functions.php';
 
-// cek apakah tombol submit sudah di tekan atau belum 
-// if (isset($_POST["submit"])) {
+// apakah tombol submit sudah di tekan atau belum 
+if (isset($_POST["submit"])) {
 
-//     // cek apakah data berhasil ditambahkan atau tidak
-//     if (changeprofile($_POST) > 0) {
-//         echo "
-//             <script>
-//                 alert('Successfully!');
-//                 document.location.href = 'profile.php';
-//             </script>
-//        ";
-//     } else {
-//         echo "
-//         <script>
-//             alert('Failed To Change!');
-//             document.location.href = 'profile.php';
-//         </script>
-//         ";
-//     }
-// }
+    // apakah data berhasil ditambahkan atau tidak
+    if (changeprofile($_POST) > 0) {
+        echo "
+            <script>
+                alert('Successfully!');
+                alert('Please Login Again!');
+                document.location.href = 'logout.php';
+            </script>
+       ";
+    } else {
+        echo "
+        <script>
+            alert('Failed To Change!');
+            document.location.href = 'profile.php';
+        </script>
+        ";
+    }
+
+    $_SESSION['id'] = $_POST['id'];
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['nama'] = $_POST['nama'];
+    $_SESSION['email'] = $_POST['email'];
+}
 
 ?>
 <!doctype html>
@@ -114,8 +124,9 @@ require '../functions.php';
         </section>
         <!-- Akhir Header -->
 
-        <!-- Form Tambah Data -->
+        <!-- Form Data -->
         <form action="" method="post" enctype="multipart/form-data">
+
             <div class="mb-4 text-center">
                 <img class="rounded-circle border border-primary" width="200px" height="200px" src="../image/person.png"
                     alt="">
@@ -134,8 +145,9 @@ require '../functions.php';
                     value="<?= $_SESSION["email"] ?>">
             </div>
             <button type="submit" class="btn btn-primary mb-4" name="submit">CHANGE</button>
+
         </form>
-        <!-- Akhir Form Tambah Data -->
+        <!-- Akhir Form Data -->
     </section>
     <!-- Akhir Form My Profile -->
 

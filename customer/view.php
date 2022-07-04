@@ -16,6 +16,52 @@ if (isset($_GET["cari"])) {
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id = $id")[0];
 
+// cek ketika tombol add cart di tekan
+if (isset($_POST['addcart'])) {
+    // cek apakah user sudah login
+    if (!isset($_SESSION['login'])) {
+        // apabila belom login
+        header('Location: login.php');
+        // proses
+
+        $status = "";
+        if (isset($_POST['code']) && $_POST['code'] != "") {
+            $code = $_POST['code'];
+            $result = mysqli_query($con, "SELECT * FROM `products` WHERE `code`='$code'");
+            $row = mysqli_fetch_assoc($result);
+            $name = $row['name'];
+            $code = $row['code'];
+            $price = $row['price'];
+            $image = $row['image'];
+
+            $cartArray = array(
+                $code => array(
+                    'name' => $name,
+                    'code' => $code,
+                    'price' => $price,
+                    'quantity' => 1,
+                    'image' => $image
+                )
+            );
+
+            if (empty($_SESSION["shopping_cart"])) {
+                $_SESSION["shopping_cart"] = $cartArray;
+                $status = "<div class='box'>Product is added to your cart!</div>";
+            } else {
+                $array_keys = array_keys($_SESSION["shopping_cart"]);
+                if (in_array($code, $array_keys)) {
+                    $status = "<div class='box' style='color:red;'>
+		Product is already added to your cart!</div>";
+                } else {
+                    $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"], $cartArray);
+                    $status = "<div class='box'>Product is added to your cart!</div>";
+                }
+            }
+        }
+    }
+}
+
+
 ?>
 
 <!doctype html>
@@ -64,24 +110,25 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
+
                     <?php
                     if (!isset($_SESSION['login'])) {
                         echo '
                     <li class="nav-item">
-                        <a class="nav-link text-white"
-                        href="login.php">Login
-                        <i class="bi bi-box-arrow-in-right"></i></a>
+                        <a class="nav-link text-white" href="login.php">Login
+                            <i class="bi bi-box-arrow-in-right"></i></a>
                     </li>
                     ';
                     } else {
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="profile.php">Profile
-                    <i class="bi bi-person-circle"></i></a>
+                            <i class="bi bi-person-circle"></i></a>
                     </li>
                     ';
                     }
                     ?>
+
                 </ul>
             </div>
         </div>
@@ -122,11 +169,13 @@ $prdct = query("SELECT * FROM product WHERE id = $id")[0];
                                     about the product
                                     here</a></small></p>
                         <p class="card-text"><small class="text-muted">Delivery Free Shipping</small></p>
-                        <p class="card-text mb-5"><small class="text-muted">NOTE Minimum Purchase *1</small></p>
+                        <p class="card-text mb-5"><small class="text-muted">NOTE Minimum Purchase 1</small></p>
 
                         <div class="button-buy-chart">
-                            <p><button class="fw-bold btn btn-primary">BUY NOW</button></p>
-                            <p><button class="fw-bold btn btn-primary">ADD TO CHART</button></p>
+                            <form action="" method="post">
+                                <p><button class="fw-bold btn btn-primary buy">BUY NOW</button></p>
+                                <p><button class="fw-bold btn btn-primary" name="addcart">ADD TO CART</button></p>
+                            </form>
                         </div>
 
                         <div class="icon fs-4">

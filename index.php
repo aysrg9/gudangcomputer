@@ -5,6 +5,10 @@ require 'functions.php';
 
 $product = query("SELECT * FROM product");
 
+if (isset($_SESSION['login'])) {
+    $id = $_SESSION['id'];
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -67,9 +71,9 @@ $product = query("SELECT * FROM product");
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="../gudangcomputer/customer/profile.php">Profile
-                        <i class="bi bi-person-circle"></i></a>
+                    <i class="bi bi-person-circle"></i></a>
                     </li>
-                        ';
+                    ';
                     }
                     ?>
                 </ul>

@@ -9,7 +9,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     $key = $_COOKIE['key'];
 
     // ambil username berdasarkan id
-    $result = mysqli_query($db, "SELECT username FROM customer WHERE id = '$id'");
+    $result = mysqli_query($db, "SELECT username FROM customer WHERE id = $id");
     $row = mysqli_fetch_assoc($result);
 
     // cek cookie dan username
@@ -25,16 +25,19 @@ if (isset($_SESSION["login"])) {
 
 if (isset($_POST["login"])) {
 
-    $username = mysqli_real_escape_string($db, $_POST["username"]);
-    $password = mysqli_real_escape_string($db, $_POST["password"]);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
     $result = mysqli_query($db, "SELECT * FROM customer WHERE username = '$username'");
     $user = mysqli_fetch_assoc($result);
 
     // cek username
     if (mysqli_num_rows($result) === 1) {
+
         // cek password
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $user["password"])) {
+
             // set session
             $_SESSION['id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
