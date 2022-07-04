@@ -40,6 +40,7 @@ if (isset($_POST["login"])) {
 
             // set session
             $_SESSION['id'] = $user['id'];
+            $_SESSION['gambar'] = $user['gambar'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['email'] = $user['email'];

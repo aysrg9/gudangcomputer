@@ -45,6 +45,10 @@ if (isset($_POST["register"])) {
                         <div class="welcome">
                             <h3 class="fs-3 fw-bold">REGISTER</h3>
                         </div>
+                        <div class="mb-3" style="display: none;">
+                            <input class="form-control form-control-sm" id="gambar" name="gambar" type="text"
+                                value="../image/profile/person.png">
+                        </div>
                         <div class="mb-3">
                             <input type"text" class="form-control" id="username" name="username" placeholder="Username"
                                 required>

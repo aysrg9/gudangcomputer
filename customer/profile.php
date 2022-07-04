@@ -6,6 +6,7 @@ if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 } else {
     $id = $_SESSION['id'];
+    $gambar = $_SESSION['gambar'];
     $username = $_SESSION['username'];
     $nama = $_SESSION['nama'];
     $email = $_SESSION['email'];
@@ -36,6 +37,7 @@ if (isset($_POST["submit"])) {
     }
 
     $_SESSION['id'] = $_POST['id'];
+    $_SESSION['gambar'] = $_POST['gambar'];
     $_SESSION['username'] = $_POST['username'];
     $_SESSION['nama'] = $_POST['nama'];
     $_SESSION['email'] = $_POST['email'];
@@ -96,7 +98,7 @@ if (isset($_POST["submit"])) {
                             <li><a class="dropdown-item" href="#">My Order</a></li>
                             <li><a class="dropdown-item" href="#">My Voucher</a></li>
                             <li><a class="dropdown-item" href="logout.php"
-                                    onclick="return alert('Are You Sure?')">Logout</a></li>
+                                    onclick="return confirm('Are You Sure?')">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -128,8 +130,8 @@ if (isset($_POST["submit"])) {
         <form action="" method="post" enctype="multipart/form-data">
 
             <div class="mb-4 text-center">
-                <img class="rounded-circle border border-primary" width="200px" height="200px" src="../image/person.png"
-                    alt="">
+                <img class="rounded-circle border border-primary" width="200px" height="200px"
+                    src="../image/profile/<?= $_SESSION["gambar"] ?>" alt="" id="gambar" name="gambar">
                 <p class="mt-2"><button class="btn btn-primary">Select Image</button></p>
             </div>
             <div class="mb-4">

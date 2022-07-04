@@ -58,12 +58,12 @@ function registrasic($data)
 {
     global $db;
 
+    $gambar = strtolower($data["gambar"]);
     $username = strtolower(stripslashes($data["username"]));
     $name = strtolower(stripslashes($data["name"]));
     $email = strtolower(stripslashes($data["email"]));
     $password = mysqli_real_escape_string($db, $data["password"]);
     $password2 = mysqli_real_escape_string($db, $data["password2"]);
-
 
     // cek username sudah ada atau belum 
     $result = mysqli_query($db, "SELECT username FROM customer WHERE username = '$username'");
@@ -90,7 +90,7 @@ function registrasic($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     //tambahkan user baru ke db
-    mysqli_query($db, "INSERT INTO customer VALUES(id,'$username','$name','$email','$password')");
+    mysqli_query($db, "INSERT INTO customer VALUES(id,'$gambar','$username','$name','$email','$password')");
     return mysqli_affected_rows($db);
 }
 
@@ -116,6 +116,54 @@ function tambah($data)
 
     return mysqli_affected_rows($db);
 }
+
+function uploadprofile()
+{
+    $namaFile = $_FILES['gambar']['name'];
+    $ukuranFile = $_FILES['gambar']['size'];
+    $error = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
+
+    //cek apakah tidak ada gambar yg diupload
+    if ($error === 4) {
+        echo "<script>
+        alert('pilih gambar terlebih dahulu!');
+            </script>";
+        return false;
+    }
+
+    //cek apakah yang diupload adalah gambar
+    $ekstensiGambarValid = ['JPG', 'jpeg', 'png'];
+    $ekstensiGambar = explode('.', $namaFile);
+    // fungsi explode itu string jadi array , kalau nama 
+    // filenya qibar.jpg itu menjadi ['qibar','jpg']
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+        echo "<script>
+        alert('Yang anda upload bukan gambar');
+            </script>";
+        return false;
+    }
+
+    //cek jika ukurannya terlalu besar
+    if ($ukuranFile > 2000000) {
+        echo "<script>
+        alert('Ukuran gambar terlalu besar !');
+            </script>";
+        return false;
+    }
+
+    // lolos pengecekan, gambar siap di upload
+    // dan generate nama baru 
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $ekstensiGambar;
+
+
+    move_uploaded_file($tmpName, '../image/profile/' . $namaFileBaru);
+    return $namaFileBaru;
+}
+
 function upload()
 {
     $namaFile = $_FILES['gambar']['name'];
