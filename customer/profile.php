@@ -130,9 +130,18 @@ if (isset($_POST["submit"])) {
         <form action="" method="post" enctype="multipart/form-data">
 
             <div class="mb-4 text-center">
-                <img class="rounded-circle border border-primary" width="200px" height="200px"
+                <img class="rounded-circle border border-primary mb-3" width="200px" height="200px"
                     src="../image/profile/<?= $_SESSION["gambar"] ?>" alt="" id="gambar" name="gambar">
-                <p class="mt-2"><button class="btn btn-primary">Select Image</button></p>
+
+                <p id="imageupload">
+                    <label for="uploadimg">
+                        <a class="btn btn-primary btn-sm" rel="nofollow"><span
+                                class='glyphicon glyphicon-paperclip'></span> SELECT IMAGE</a>
+                    </label>
+                    <input type="file" name="uploadimg" id="uploadimg" class="d-none">
+                </p>
+
+                <!-- <p class="mt-2"><button type="file" class="btn btn-primary">SELECT IMAGE</button></p> -->
             </div>
             <div class="mb-4">
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username"

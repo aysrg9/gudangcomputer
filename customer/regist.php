@@ -47,7 +47,7 @@ if (isset($_POST["register"])) {
                         </div>
                         <div class="mb-3" style="display: none;">
                             <input class="form-control form-control-sm" id="gambar" name="gambar" type="text"
-                                value="../image/profile/person.png">
+                                value="person.png">
                         </div>
                         <div class="mb-3">
                             <input type"text" class="form-control" id="username" name="username" placeholder="Username"
