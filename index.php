@@ -150,7 +150,7 @@ if (isset($_SESSION['login'])) {
                     </p>
                     <div class="card-body">
                         <p class="card-title text-center text-dark fs-5"><?= $row["nama"] ?></p>
-                        <p class="card-text fw-bold text-primary text-center">Rp <?= $row["price"] ?></p>
+                        <p class="card-text fw-bold text-primary text-center"><?= rupiah($row["price"]) ?></p>
                     </div>
                 </div>
             </a>

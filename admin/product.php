@@ -135,7 +135,7 @@ $product = query("SELECT * FROM product");
                     <td><?= $row["nama"] ?></td>
                     <td><a class="text-white" href="<?= $row["spesifikasi"] ?>" target="_blank">CLICK HERE</a></td>
                     <td><?= $row["stock"] ?></td>
-                    <td>Rp <?= $row["price"] ?></td>
+                    <td><?= rupiah($row["price"]) ?></td>
                     <td><a href="../image/product/<?= $row["gambar"] ?>" target="_blank"><img
                                 src="../image/product/<?= $row["gambar"] ?>" alt="" width="80px"></a></td>
                 </tr>

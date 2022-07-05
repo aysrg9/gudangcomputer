@@ -268,3 +268,9 @@ function changeprofile($data)
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
+
+function rupiah($angka)
+{
+    $hasil = "Rp " . number_format($angka, '2', ',', '.');
+    return $hasil;
+}
