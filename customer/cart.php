@@ -151,13 +151,13 @@ if (isset($_GET['delete_all'])) {
                         <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
                                 alt=""></td>
                         <td><?php echo $fetch_cart['name']; ?></td>
-                        <td><?php echo rupiah($fetch_cart['price']); ?>/-</td>
+                        <td><?php echo rupiah($fetch_cart['price']); ?></td>
                         <td>
                             <form action="" method="post">
                                 <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
-                                <input style="width: 70px;" type="number" min="1" name="cart_quantity"
+                                <input id="keyword" style="width: 70px;" type="number" min="1" name="cart_quantity"
                                     value="<?php echo $fetch_cart['quantity']; ?>">
-                                <input type="submit" name="update_cart" value="update"
+                                <input id="tombol-update" type="submit" name="update_cart" value="update"
                                     class="option-btn btn btn-light btn-sm fw-bold border border-dark">
                             </form>
                         </td>
@@ -176,7 +176,7 @@ if (isset($_GET['delete_all'])) {
                     ?>
                     <tr class="table-bottom">
                         <td colspan="4">Grand Total :</td>
-                        <td><?php echo rupiah($grand_total); ?>/-</td>
+                        <td><?php echo rupiah($grand_total); ?></td>
                         <td><a href="cart.php?delete_all" onclick="return confirm('delete all from cart?');"
                                 class="delete-btn text-white <?php echo ($grand_total > 1) ? '' : 'disabled'; ?>">DELETE
                                 ALL</a>
@@ -201,6 +201,9 @@ if (isset($_GET['delete_all'])) {
         </div>
     </footer>
     <!-- Akhir Footer -->
+
+    <!-- My JS -->
+    <script src="../js/script.js"></script>
 
     <!-- JS Bootstarp -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

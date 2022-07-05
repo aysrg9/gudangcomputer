@@ -37,13 +37,22 @@ if (isset($_POST['addcart'])) {
 
     $select_cart = mysqli_query($db, "SELECT * FROM `cart` WHERE name = '$product_name' AND user_id = '$user_id'") or die('query failed');
 
-    if (mysqli_num_rows($select_cart) > 0) {
-        $message[] = 'Product already added to cart!';
+    $stockprdct = $prdct['stock'];
+
+    if ($product_quantity > $stockprdct) {
+        // echo "<script>alert('Not enough stock')</script>";
+        $message[] = 'Not enough stock!';
     } else {
-        mysqli_query($db, "INSERT INTO `cart`(user_id, name, price, image, quantity) VALUES('$user_id', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
-        $message[] = 'Product added to cart!';
-    }
-};
+        if (mysqli_num_rows($select_cart) > 0) {
+            $message[] = 'Product already added to cart!';
+        } else {
+            mysqli_query($db, "INSERT INTO `cart`(user_id, name, price, image, quantity) VALUES('$user_id', '$product_name', '$product_price', '$product_image', '$product_quantity')") or die('query failed');
+            $message[] = 'Product added to cart!';
+        }
+    };
+}
+
+
 
 
 ?>
@@ -129,17 +138,17 @@ if (isset($_POST['addcart'])) {
     </section>
     <!-- Akhir Navbar -->
 
-    <?php
-    if (isset($message)) {
-        foreach ($message as $message) {
-            echo '<div class="message container-sm alert alert-warning d-flex align-items-center mt-5 border border-secondary" onclick="this.remove();">' . $message . '</div>';
+    <section class="container">
+        <?php
+        if (isset($message)) {
+            foreach ($message as $message) {
+                echo '<div class="message container-sm alert alert-warning d-flex align-items-center mt-5 border border-secondary" onclick="this.remove();">' . $message . '</div>';
+            }
         }
-    }
-    ?>
+        ?>
 
-    <!-- View Produk -->
-    <form action="" method="post">
-        <section class="container">
+        <!-- View Produk -->
+        <form action="" method="post">
             <div class="card mb-5 mt-5">
                 <div class=" row g-0">
                     <div class="col-md-4">
@@ -191,7 +200,7 @@ if (isset($_POST['addcart'])) {
                     </div>
                 </div>
             </div>
-        </section>
+    </section>
     </form>
     <!-- Akhir View Produk -->
 
