@@ -128,14 +128,18 @@ if (isset($_POST["submit"])) {
             <input type="hidden" name="pictureOld" value="<?= $_SESSION["picture"]; ?>">
 
             <div class="mb-4 text-center">
+
                 <img class="rounded-circle border border-primary mb-3" width="200px" height="200px"
                     src="../image/profile/<?= $_SESSION["picture"] ?>" alt="" id="" name="">
 
-                <input type="file" class="form-control" id="picture" name="picture" placeholder="Image"
-                    value="<?= $_SESSION["picture"]; ?>">
+                <label for="picture">
+                    <a class="btn btn-primary btn-sm" rel="nofollow">
+                        SELECT IMAGE</a>
+                    <input class="d-none" type="file" name="picture" id="picture" value="<?= $_SESSION["picture"]; ?>">
+                </label>
 
-                <!-- <p class="mt-2"><button type="file" class="btn btn-primary">SELECT IMAGE</button></p> -->
             </div>
+
             <div class="mb-4">
                 <input type="text" class="form-control" id="username" name="username" placeholder="Username"
                     value="<?= $_SESSION["username"] ?>">

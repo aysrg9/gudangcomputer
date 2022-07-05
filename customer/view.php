@@ -9,12 +9,13 @@ $product = query("SELECT * FROM product");
 // ambil data di url 
 $id = $_GET["id"];
 
+//query data product berdasarkan id
+$prdct = query("SELECT * FROM product WHERE id = $id")[0];
+
+// fungsi cari
 if (isset($_GET["cari"])) {
     $keyword = $_GET["keyword"];
 }
-
-//query data product berdasarkan id
-$prdct = query("SELECT * FROM product WHERE id = $id")[0];
 
 // cek ketika tombol add cart di tekan
 if (isset($_POST['addcart'])) {
@@ -22,42 +23,6 @@ if (isset($_POST['addcart'])) {
     if (!isset($_SESSION['login'])) {
         // apabila belom login
         header('Location: login.php');
-        // proses
-
-        $status = "";
-        if (isset($_POST['code']) && $_POST['code'] != "") {
-            $code = $_POST['code'];
-            $result = mysqli_query($con, "SELECT * FROM `products` WHERE `code`='$code'");
-            $row = mysqli_fetch_assoc($result);
-            $name = $row['name'];
-            $code = $row['code'];
-            $price = $row['price'];
-            $image = $row['image'];
-
-            $cartArray = array(
-                $code => array(
-                    'name' => $name,
-                    'code' => $code,
-                    'price' => $price,
-                    'quantity' => 1,
-                    'image' => $image
-                )
-            );
-
-            if (empty($_SESSION["shopping_cart"])) {
-                $_SESSION["shopping_cart"] = $cartArray;
-                $status = "<div class='box'>Product is added to your cart!</div>";
-            } else {
-                $array_keys = array_keys($_SESSION["shopping_cart"]);
-                if (in_array($code, $array_keys)) {
-                    $status = "<div class='box' style='color:red;'>
-		Product is already added to your cart!</div>";
-                } else {
-                    $_SESSION["shopping_cart"] = array_merge($_SESSION["shopping_cart"], $cartArray);
-                    $status = "<div class='box'>Product is added to your cart!</div>";
-                }
-            }
-        }
     }
 }
 

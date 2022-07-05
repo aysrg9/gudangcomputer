@@ -9,21 +9,21 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     $key = $_COOKIE['key'];
 
     // ambil username berdasarkan id
-    $result = mysqli_query($conn, "SELECT username FROM user WHERE id = $id");
+    $result = mysqli_query($db, "SELECT username FROM admin WHERE id = $id");
     $row = mysqli_fetch_assoc($result);
 
     // cek cookie dan username
     if ($key === hash('sha256', $row['username'])) {
-        $_SESSION['login'] = true;
+        $_SESSION['loginadmin'] = true;
     }
 }
 
-if (isset($_SESSION["login"])) {
+if (isset($_SESSION["loginadmin"])) {
     header("Location: index.php");
     exit;
 }
 
-if (isset($_POST["login"])) {
+if (isset($_POST["loginadmin"])) {
 
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -36,7 +36,7 @@ if (isset($_POST["login"])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])) {
             // set session
-            $_SESSION["login"] = true;
+            $_SESSION["loginadmin"] = true;
 
             // cek remember me
             if (isset($_POST['remember'])) {
@@ -97,7 +97,7 @@ if (isset($_POST["login"])) {
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password">
                         </div>
-                        <button type="submit" name="login" class="btn btn-primary login">LOGIN</button>
+                        <button type="submit" name="loginadmin" class="btn btn-primary login">LOGIN</button>
                     </form>
                 </div>
             </div>

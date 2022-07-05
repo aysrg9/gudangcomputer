@@ -48,9 +48,9 @@ if (isset($_POST["login"])) {
             $_SESSION["login"] = true;
 
             // cek remember me
-            if (isset($_SESSION["login"])) {
+            if (isset($_POST["remember"])) {
                 // buat cookie
-                setcookie('id', $row['id'], time());
+                setcookie('id', $_SESSION['id'], time());
                 setcookie('key', hash('sha256', $row['username']), time());
             }
 
@@ -106,6 +106,12 @@ if (isset($_POST["login"])) {
                         <div class="mb-1">
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="Password">
+                        </div>
+                        <div class="mb-1" style="font-size: 15px;">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                            <label class="form-check-label" for="remember">
+                                Remember Me
+                            </label>
                         </div>
                         <div class="mb-3" style="font-size: 13px;">
                             <a class="text-white" href="regist.php">Don't Have Account ?</a>
