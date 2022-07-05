@@ -74,7 +74,7 @@ $product = query("SELECT * FROM product");
                         <a class="nav-link text-white" href="tables.php">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="logout.php"
+                        <a class="nav-link text-white" href="logoutadmin.php"
                             onclick="return confirm('Are You Sure?')">Logout</a>
                     </li>
                 </ul>
