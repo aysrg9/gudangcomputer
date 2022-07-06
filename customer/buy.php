@@ -40,6 +40,14 @@ if (!isset($_SESSION["login"])) {
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
+    <style>
+    @media (max-width: 400px) {
+        .table {
+            width: 20%;
+        }
+    }
+    </style>
+
     <title>Gudang Computer</title>
 </head>
 
@@ -98,7 +106,62 @@ if (!isset($_SESSION["login"])) {
     <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
+    <!-- Checkout -->
+    <section class="container">
 
+        <div class="bg-white mb-3 mt-3 border border-primary">
+            <div class="mb-3 ps-4 pe-4 mt-3">
+                <label for="addres" class="form-label fw-bold fs-5 text-primary">
+                    <i class="bi bi-geo-alt-fill"></i> Shipping address
+                </label>
+                <input type="Text" class="form-control" id="addres" placeholder="Jakarta, Indonesia"
+                    value="Jakarta, Indonesia">
+            </div>
+        </div>
+
+        <div class="bg-white border border-primary table-responsive mb-3">
+            <table class="table mt-3 bg-primary container text-center text-white fw-bold">
+                <tr class=" text-uppercase">
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+
+                <tr>
+                    <td><img src="../image/product/62bb3e8ee71d9.png" alt="" width="50px" height="50px"></td>
+                    <td class="text-truncate">GTX 1660 Super</td>
+                    <td>Rp 10.000.000</td>
+                    <td>1</td>
+                    <td>Rp 10.000.000</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="bg-white mb-3 mt-3 border border-primary">
+            <div class="mb-3 ps-4 pe-4 mt-3">
+                <label for="voucher" class="form-label fw-bold fs-5 text-primary">
+                    <i class="bi bi-ticket-perforated-fill"></i> Code Voucher
+                </label>
+                <input type="Text" class="form-control" id="voucher" placeholder="freeshipping">
+            </div>
+        </div>
+
+        <div class="bg-white mb-3 mt-3 border border-primary">
+            <div class="mb-3 ps-4 pe-4 mt-3 text-end">
+                <div class="d-block">
+                    <p>Subtotal Product : Rp 10.000.000</p>
+                    <p>Total shipping cost : Rp 0</p>
+                    <p>Subtotal : <span class="fs-5 fw-bold text-primary">Rp 10.000.000</span></p>
+                    <button type="submit" class="text-uppercase btn btn-primary fw-bold">make an order</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Akhir Checkout -->
 
     <!-- Footer -->
     <footer id="footer" class="py-4 bg-primary position-relative">

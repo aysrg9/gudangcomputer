@@ -162,7 +162,9 @@ if (isset($_GET['delete_all'])) {
                         <tr>
                             <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
                                     alt=""></td>
-                            <td><?php echo $fetch_cart['name']; ?></td>
+                            <td>
+                                <?php echo $fetch_cart['name']; ?>
+                            </td>
                             <td><?php echo rupiah($fetch_cart['price']); ?></td>
                             <td>
                                 <form action="" method="post">
@@ -170,7 +172,7 @@ if (isset($_GET['delete_all'])) {
                                     <input id="keyword" style="width: 70px;" type="number" min="1" name="cart_quantity"
                                         value="<?php echo $fetch_cart['quantity']; ?>">
                                     <button id="update" type="submit" name="update_cart"
-                                        class="option-btn btn btn-light btn-sm fw-bold border border-dark">UPDATE
+                                        class="option-btn btn btn-dark btn-sm fw-bold border border-dark">UPDATE
                                 </form>
                             </td>
                             <td><?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</td>
