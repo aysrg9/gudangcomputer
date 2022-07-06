@@ -161,6 +161,18 @@ if (!isset($_SESSION["login"])) {
 
         <div class="bg-white mb-5 mt-3 border border-primary">
 
+            <?php
+            $grand_total = 0;
+            ?>
+
+            <?php $sub_total = ($prdct['price'] * $_SESSION['quantity']); ?>
+
+            <?php
+            $grand_total += $sub_total; {
+            }
+
+            ?>
+
             <div class="mb-3 ps-4 pe-4 mt-3">
 
                 <div class="d-flex">
@@ -186,7 +198,7 @@ if (!isset($_SESSION["login"])) {
                 <div class="d-flex mb-3">
                     <div class="p-2">Subtotal</div>
                     <div class="p-2">:</div>
-                    <div class="ms-auto p-2 fw-bold text-primary fs-5"><?= rupiah($prdct["price"]); ?></div>
+                    <div class="ms-auto p-2 fw-bold text-primary fs-5"><?php echo rupiah($grand_total); ?></div>
                 </div>
 
                 <hr>
