@@ -37,6 +37,7 @@ if (isset($_POST['buynow'])) {
     } else {
         // jika quantity tidak melebihi stock
         header("Location: buy.php?id=$id");
+        $_SESSION['quantity'] = $product_quantity;
     }
 }
 

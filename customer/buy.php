@@ -23,6 +23,7 @@ if (!isset($_SESSION["login"])) {
     }
     // jika sudah, ambil id nya
     $user_id = $_SESSION['id'];
+    $quantity = $_SESSION['quantity'];
 }
 
 ?>
@@ -141,8 +142,9 @@ if (!isset($_SESSION["login"])) {
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title fw-bold"><?= $prdct["nama"]; ?></h5>
-                        <p class="card-text"><?= rupiah($prdct["price"]); ?></p>
-                        <p class="card-text"></p>
+                        <p class="card-text d-inline me-3"><?= rupiah($prdct["price"]); ?></p>
+                        <p class="card-text d-inline me-3">Stock <?= $prdct["stock"]; ?></p>
+                        <p class="card-text d-inline">Quantity <?php echo $_SESSION['quantity'] ?></p>
                     </div>
                 </div>
             </div>
