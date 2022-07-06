@@ -32,3 +32,10 @@ body {
   width: 100px;
   height: 100px;
 }
+
+@media (max-width: 767px) {
+  .products {
+    text-align: center;
+  }
+
+}

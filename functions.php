@@ -41,7 +41,7 @@ function registrasi($data)
     if ($password !== $password2) {
         echo "
             <script>
-                alert('konfirmasi password tidak sesuai');
+                alert('Try Again!');
             </script>
             ";
         return false;
@@ -82,7 +82,7 @@ function registrasic($data)
     if ($password !== $password2) {
         echo "
             <script>
-                alert('konfirmasi password tidak sesuai');
+                alert('Try Again!');
             </script>
             ";
         return false;
@@ -151,7 +151,7 @@ function upload()
     //cek jika ukurannya terlalu besar
     if ($ukuranFile > 1000000) {
         echo "<script>
-        alert('Ukuran gambar terlalu besar !');
+        alert('max size 1MB, Try again!');
             </script>";
         return false;
     }
@@ -235,7 +235,7 @@ function uploadpicture()
     //cek jika ukurannya terlalu besar
     if ($sizeFile > 2000000) {
         echo "<script>
-        alert('Ukuran gambar terlalu besar !');
+        alert('Max size file 2MB, Try Again!');
             </script>";
         return false;
     }

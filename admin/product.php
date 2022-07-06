@@ -128,7 +128,7 @@ $product = query("SELECT * FROM product");
 
                 <tr>
                     <td><?= $i ?></td>
-                    <td>
+                    <td class="fs-5">
                         <a onclick="return confirm('Are You Sure?')" class="text-white"
                             href="delete.php?id=<?= $row["id"] ?>"><i class="bi bi-trash-fill"></i></a>
                         |

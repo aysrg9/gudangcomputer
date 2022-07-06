@@ -56,7 +56,6 @@ if (isset($_GET['delete_all'])) {
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
-
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/market.css">
 
@@ -141,62 +140,64 @@ if (isset($_GET['delete_all'])) {
 
         <!-- Cart -->
         <section id="page-cart" style="height:100vh;">
-            <table class="table bg-primary container text-center text-white mb-5 fw-bold">
+            <div class="table-responsive">
+                <table class="table bg-primary container text-center text-white mb-5 fw-bold">
 
-                <thead class="text-uppercase">
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Action</th>
-                </thead>
+                    <thead class="text-uppercase">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Action</th>
+                    </thead>
 
-                <tbody>
-                    <?php
-                    $cart_query = mysqli_query($db, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
-                    $grand_total = 0;
-                    if (mysqli_num_rows($cart_query) > 0) {
-                        while ($fetch_cart = mysqli_fetch_assoc($cart_query)) {
-                    ?>
-                    <tr>
-                        <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
-                                alt=""></td>
-                        <td><?php echo $fetch_cart['name']; ?></td>
-                        <td><?php echo rupiah($fetch_cart['price']); ?></td>
-                        <td>
-                            <form action="" method="post">
-                                <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
-                                <input id="keyword" style="width: 70px;" type="number" min="1" name="cart_quantity"
-                                    value="<?php echo $fetch_cart['quantity']; ?>">
-                                <input id="tombol-update" type="submit" name="update_cart" value="update"
-                                    class="option-btn btn btn-light btn-sm fw-bold border border-dark">
-                            </form>
-                        </td>
-                        <td><?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</td>
-                        <td><a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
-                                onclick="return confirm('remove item from cart?');"><i
-                                    class="bi bi-trash-fill text-white fs-3"></i></a>
-                        </td>
-                    </tr>
-                    <?php
-                            $grand_total += $sub_total;
+                    <tbody>
+                        <?php
+                        $cart_query = mysqli_query($db, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+                        $grand_total = 0;
+                        if (mysqli_num_rows($cart_query) > 0) {
+                            while ($fetch_cart = mysqli_fetch_assoc($cart_query)) {
+                        ?>
+                        <tr>
+                            <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
+                                    alt=""></td>
+                            <td><?php echo $fetch_cart['name']; ?></td>
+                            <td><?php echo rupiah($fetch_cart['price']); ?></td>
+                            <td>
+                                <form action="" method="post">
+                                    <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
+                                    <input id="keyword" style="width: 70px;" type="number" min="1" name="cart_quantity"
+                                        value="<?php echo $fetch_cart['quantity']; ?>">
+                                    <button id="update" type="submit" name="update_cart"
+                                        class="option-btn btn btn-light btn-sm fw-bold border border-dark">UPDATE
+                                </form>
+                            </td>
+                            <td><?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</td>
+                            <td><a href=" cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
+                                    onclick="return confirm('remove item from cart?');"><i
+                                        class="bi bi-trash-fill text-white fs-3"></i></a>
+                            </td>
+                        </tr>
+                        <?php
+                                $grand_total += $sub_total;
+                            }
+                        } else {
+                            echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
                         }
-                    } else {
-                        echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
-                    }
-                    ?>
-                    <tr class="table-bottom">
-                        <td colspan="4">Grand Total :</td>
-                        <td><?php echo rupiah($grand_total); ?></td>
-                        <td><a href="cart.php?delete_all" onclick="return confirm('delete all from cart?');"
-                                class="delete-btn text-white <?php echo ($grand_total > 1) ? '' : 'disabled'; ?>">DELETE
-                                ALL</a>
-                        </td>
-                    </tr>
-                </tbody>
+                        ?>
+                        <tr class="table-bottom">
+                            <td colspan="4">Grand Total :</td>
+                            <td><?php echo rupiah($grand_total); ?></td>
+                            <td><a href="cart.php?delete_all" onclick="return confirm('delete all from cart?');"
+                                    class="delete-btn text-white <?php echo ($grand_total > 1) ? '' : 'disabled'; ?>">DELETE
+                                    ALL</a>
+                            </td>
+                        </tr>
+                    </tbody>
 
-            </table>
+                </table>
+            </div>
         </section>
     </section>
     <!-- Akhir Cart -->
@@ -213,6 +214,8 @@ if (isset($_GET['delete_all'])) {
         </div>
     </footer>
     <!-- Akhir Footer -->
+
+
 
     <!-- JS Bootstarp -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

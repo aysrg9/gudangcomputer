@@ -19,6 +19,18 @@ if (isset($_GET["cari"])) {
     $keyword = $_GET["keyword"];
 }
 
+// ketika tombol buy now di tekan
+if (isset($_POST['buynow'])) {
+    // cek sudah login atau belom
+    if (!isset($_SESSION['login'])) {
+        // jika belom
+        header("Location: login.php");
+    } else {
+        // jika sudah
+        header("Location: buy.php");
+    }
+}
+
 // ketika tombol add cart di tekan
 if (isset($_POST['addcart'])) {
     // cek apakah user sudah login
@@ -192,7 +204,7 @@ if (isset($_POST['addcart'])) {
 
                             <div class="button-buy-chart">
                                 <input type="number" min="1" name="product_quantity" value="1">
-                                <p><button class="fw-bold btn btn-primary buy mt-3">BUY NOW</button></p>
+                                <p><button class="fw-bold btn btn-primary buy mt-3" name="buynow">BUY NOW</button></p>
                                 <p><button class="fw-bold btn btn-primary" name="addcart">ADD TO CART</button></p>
 
                             </div>

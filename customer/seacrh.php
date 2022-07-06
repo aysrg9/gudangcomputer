@@ -123,8 +123,9 @@ $keyword = $_GET['keyword'];
                         <img id="image-prdct" src="../image/product/<?= $p["gambar"] ?>" class="card-img-top" alt="...">
                     </p>
                     <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5"><?= $p["nama"] ?></p>
-                        <p class="card-text fw-bold text-primary text-center">Rp <?= $p["price"] ?></p>
+                        <p class="card-title text-dark text-truncate" style="font-size: 17px;"><?= $p["nama"] ?></p>
+                        <p class="card-text fw-bold text-primary" style="font-size: 17px;"><?= rupiah($p["price"]) ?>
+                        </p>
                     </div>
                 </div>
             </a>

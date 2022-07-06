@@ -141,28 +141,33 @@ if (isset($_SESSION['login'])) {
         <!-- Akhir Header -->
 
         <!-- Product -->
-        <div class="row row-cols-1 row-cols-md-5 g-3">
+        <div class="products">
+            <div class="row row-cols-1 row-cols-md-5 g-3">
 
-            <?php $i = 1; ?>
-            <?php foreach ($product as $row) : ?>
+                <?php $i = 1; ?>
+                <?php foreach ($product as $row) : ?>
 
-            <a class="col" href="../gudangcomputer/customer/view.php?id=<?= $row["id"] ?>"
-                style="text-decoration: none;">
-                <div class="card h-100 border border-primary">
-                    <p class="text-center mt-2">
-                        <img id="image-prdct" src="./image/product/<?= $row["gambar"] ?>" class="card-img-top"
-                            alt="...">
-                    </p>
-                    <div class="card-body">
-                        <p class="card-title text-center text-dark fs-5"><?= $row["nama"] ?></p>
-                        <p class="card-text fw-bold text-primary text-center"><?= rupiah($row["price"]) ?></p>
+                <a class="col" href="../gudangcomputer/customer/view.php?id=<?= $row["id"] ?>"
+                    style="text-decoration: none;">
+                    <div class="card h-100 border border-primary">
+                        <p class="text-center mt-2">
+                            <img id="image-prdct" src="./image/product/<?= $row["gambar"] ?>" class="card-img-top"
+                                alt="...">
+                        </p>
+                        <div class="card-body">
+                            <p class="card-title text-dark text-truncate" style="font-size: 17px;"><?= $row["nama"] ?>
+                            </p>
+                            <p class="card-text fw-bold text-primary" style="font-size: 17px;">
+                                <?= rupiah($row["price"]) ?>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
 
-            <?php $i++ ?>
-            <?php endforeach; ?>
+                <?php $i++ ?>
+                <?php endforeach; ?>
 
+            </div>
         </div>
         <!-- Akhir Product -->
     </section>
