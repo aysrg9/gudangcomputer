@@ -26,6 +26,18 @@ if (isset($_POST['buynow'])) {
         // jika belom
         header("Location: login.php");
     }
+
+    // proses
+    $stockprdct = $prdct['stock'];
+    $product_quantity = $_POST['product_quantity'];
+
+    // cek stock
+    if ($product_quantity > $stockprdct) {
+        $message[] = 'Not enough stock!';
+    } else {
+        // jika quantity tidak melebihi stock
+        header("Location: buy.php?id=$id");
+    }
 }
 
 // ketika tombol add cart di tekan
@@ -50,9 +62,12 @@ if (isset($_POST['addcart'])) {
 
     $stockprdct = $prdct['stock'];
 
+    // cek stock
     if ($product_quantity > $stockprdct) {
+        // jika tidak cukup
         $message[] = 'Not enough stock!';
     } else {
+        // jika cukup
         if (mysqli_num_rows($select_cart) > 0) {
             $message[] = 'Product already added to cart!';
         } else {
@@ -201,9 +216,12 @@ if (isset($_POST['addcart'])) {
 
                             <div class="button-buy-chart">
                                 <input type="number" min="1" name="product_quantity" value="1">
-                                <p class="mt-3"><a id="buynow" href="buy.php?id=<?= $prdct["id"]; ?>"
-                                        class="btn btn-primary fw-bold">BUY
-                                        NOW</a></p>
+                                <p class="mt-3">
+                                    <button type="submit" name="buynow"
+                                        class="btn btn-primary fw-bold text-uppercase">buy
+                                        now
+                                    </button>
+                                </p>
                                 <p><button class="fw-bold btn btn-primary" name="addcart">ADD TO CART</button></p>
 
                             </div>

@@ -126,7 +126,7 @@ if (!isset($_SESSION["login"])) {
                     <i class="bi bi-geo-alt-fill"></i> Shipping address
                 </label>
                 <input type="Text" class="form-control" id="addres" placeholder="Jakarta, Indonesia"
-                    value="Jakarta, Indonesia">
+                    value="Jakarta, Indonesia" required>
             </div>
         </div>
 

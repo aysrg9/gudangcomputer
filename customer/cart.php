@@ -35,6 +35,11 @@ if (isset($_GET['delete_all'])) {
     header('location:cart.php');
 }
 
+// fungsi checkout
+if (isset($_POST['checkout'])) {
+    header("Location: buy.php");
+}
+
 ?>
 
 <!doctype html>
@@ -141,7 +146,7 @@ if (isset($_GET['delete_all'])) {
         <!-- Cart -->
         <section id="page-cart" style="height:100vh;">
             <div class="table-responsive">
-                <table class="table bg-primary container text-center text-white mb-5 fw-bold">
+                <table class="table bg-primary container text-center text-white mb-1 fw-bold">
 
                     <thead class="text-uppercase">
                         <th>Image</th>
@@ -198,8 +203,14 @@ if (isset($_GET['delete_all'])) {
                             </td>
                         </tr>
                     </tbody>
-
                 </table>
+
+                <form action="" method="POST">
+                    <p class="text-end">
+                        <a class="btn btn-primary fw-bold">CHECKOUT</a>
+                    </p>
+                </form>
+
             </div>
         </section>
     </section>
