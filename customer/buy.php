@@ -5,11 +5,22 @@ session_start();
 // koneksi 
 require '../functions.php';
 
+// query data product
+$product = query("SELECT * FROM product");
+
+// ambil data dari url
+$id = $_GET["id"];
+
+//query data product berdasarkan id
+$prdct = query("SELECT * FROM product WHERE id = $id")[0];
+
 // cek user login
 if (!isset($_SESSION["login"])) {
-    // jika belom
-    header("Location: login.php");
-} else {
+    // cek apakah user sudah login
+    if (!isset($_SESSION['login'])) {
+        // apabila belom login
+        header('Location: login.php');
+    }
     // jika sudah, ambil id nya
     $user_id = $_SESSION['id'];
 }
@@ -48,7 +59,7 @@ if (!isset($_SESSION["login"])) {
     }
     </style>
 
-    <title>Gudang Computer</title>
+    <title>Gudang Computer Checkout</title>
 </head>
 
 <body>
@@ -119,25 +130,22 @@ if (!isset($_SESSION["login"])) {
             </div>
         </div>
 
-        <div class="bg-white border border-primary table-responsive mb-3">
-            <table class="table mt-3 bg-primary container text-center text-white fw-bold">
-                <tr class=" text-uppercase">
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                </tr>
-
-                <tr>
-                    <td><img src="../image/product/62bb3e8ee71d9.png" alt="" width="50px" height="50px"></td>
-                    <td class="text-truncate">GTX 1660 Super</td>
-                    <td>Rp 10.000.000</td>
-                    <td>1</td>
-                    <td>Rp 10.000.000</td>
-                </tr>
-
-            </table>
+        <div class="card mb-3 border border-primary" style="max-width: 100%;">
+            <div class="row g-0">
+                <div class="col-md-2">
+                    <p class="text-center mt-4">
+                        <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start" alt="..."
+                            width="100px" height="100px">
+                    </p>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold"><?= $prdct["nama"]; ?></h5>
+                        <p class="card-text"><?= rupiah($prdct["price"]); ?></p>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="bg-white mb-3 mt-3 border border-primary">
@@ -149,14 +157,41 @@ if (!isset($_SESSION["login"])) {
             </div>
         </div>
 
-        <div class="bg-white mb-3 mt-3 border border-primary">
-            <div class="mb-3 ps-4 pe-4 mt-3 text-end">
-                <div class="d-block">
-                    <p>Subtotal Product : Rp 10.000.000</p>
-                    <p>Total shipping cost : Rp 0</p>
-                    <p>Subtotal : <span class="fs-5 fw-bold text-primary">Rp 10.000.000</span></p>
-                    <button type="submit" class="text-uppercase btn btn-primary fw-bold">make an order</button>
+        <div class="bg-white mb-5 mt-3 border border-primary">
+
+            <div class="mb-3 ps-4 pe-4 mt-3">
+
+                <div class="d-flex">
+                    <div class="p-2 fw-bold text-primary fs-5"><i class="bi bi-credit-card"></i> Payment Method</div>
+                    <div class="p-2 fs-5">:</div>
+                    <div class="ms-auto p-2 fw-bold fs-5">Cash On Delivery Only</div>
                 </div>
+
+                <hr>
+
+                <div class="d-flex">
+                    <div class="p-2">Handling Fee</div>
+                    <div class="p-2">:</div>
+                    <div class="ms-auto p-2">Rp 0</div>
+                </div>
+
+                <div class="d-flex">
+                    <div class="p-2">Total shipping cost</div>
+                    <div class="p-2">:</div>
+                    <div class="ms-auto p-2">Rp 0</div>
+                </div>
+
+                <div class="d-flex mb-3">
+                    <div class="p-2">Subtotal</div>
+                    <div class="p-2">:</div>
+                    <div class="ms-auto p-2 fw-bold text-primary fs-5"><?= rupiah($prdct["price"]); ?></div>
+                </div>
+
+                <hr>
+
+                <p class="text-end">
+                    <button type="submit" class="btn btn-primary btn-sm text-uppercase fw-bold">make an order</button>
+                </p>
             </div>
         </div>
 

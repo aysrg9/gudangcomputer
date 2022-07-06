@@ -175,7 +175,8 @@ if (isset($_GET['delete_all'])) {
                                         class="option-btn btn btn-dark btn-sm fw-bold border border-dark">UPDATE
                                 </form>
                             </td>
-                            <td><?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</td>
+                            <td><?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-
+                            </td>
                             <td><a href=" cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
                                     onclick="return confirm('remove item from cart?');"><i
                                         class="bi bi-trash-fill text-white fs-3"></i></a>
@@ -192,7 +193,7 @@ if (isset($_GET['delete_all'])) {
                             <td colspan="4">Grand Total :</td>
                             <td><?php echo rupiah($grand_total); ?></td>
                             <td><a href="cart.php?delete_all" onclick="return confirm('delete all from cart?');"
-                                    class="delete-btn text-white <?php echo ($grand_total > 1) ? '' : 'disabled'; ?>">DELETE
+                                    class="delete-btn text-white<?php echo ($grand_total > 1) ? '' : 'disabled d-none'; ?>">DELETE
                                     ALL</a>
                             </td>
                         </tr>
