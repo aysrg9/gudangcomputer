@@ -2,12 +2,13 @@
 
 session_start();
 
+// cek user login
 if (!isset($_SESSION["loginadmin"])) {
     header("Location: login.php");
     exit;
 }
 
-// dipakai function
+// koneksi
 require '../functions.php';
 
 // ambil data di url 

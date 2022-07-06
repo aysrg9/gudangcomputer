@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+
+// koneksi
 require '../functions.php';
 
 // cek cookie
@@ -18,11 +20,14 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     }
 }
 
+// cek user login
 if (isset($_SESSION["login"])) {
+    // jika sudah
     header("Location: ../index.php");
     exit;
 }
 
+// cek form login
 if (isset($_POST["login"])) {
 
     $username = $_POST["username"];
@@ -44,7 +49,6 @@ if (isset($_POST["login"])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['email'] = $user['email'];
-
             $_SESSION["login"] = true;
 
             // cek remember me
@@ -59,6 +63,7 @@ if (isset($_POST["login"])) {
         }
     }
 
+    // alert
     $error = true;
 }
 
@@ -93,12 +98,14 @@ if (isset($_POST["login"])) {
                             <h3 class="fs-3 fw-bold">WELCOME</h3>
                         </div>
 
+                        <!-- Alert error -->
                         <?php if (isset($error)) : ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Try Again!</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         <?php endif; ?>
+                        <!-- Akhir Alert -->
 
                         <div class="mb-3">
                             <input type"text" class="form-control" id="username" name="username" placeholder="Username">

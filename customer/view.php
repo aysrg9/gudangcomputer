@@ -2,8 +2,10 @@
 
 session_start();
 
+// koneksi
 require '../functions.php';
 
+// query data product
 $product = query("SELECT * FROM product");
 
 // ambil data di url 
@@ -25,7 +27,6 @@ if (isset($_POST['addcart'])) {
         header('Location: login.php');
     }
     // apabila sudah login
-
     // ambil id dari session
     $user_id = $_SESSION['id'];
 
@@ -40,7 +41,6 @@ if (isset($_POST['addcart'])) {
     $stockprdct = $prdct['stock'];
 
     if ($product_quantity > $stockprdct) {
-        // echo "<script>alert('Not enough stock')</script>";
         $message[] = 'Not enough stock!';
     } else {
         if (mysqli_num_rows($select_cart) > 0) {
@@ -76,7 +76,6 @@ if (isset($_POST['addcart'])) {
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
-
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/market.css">
 
@@ -105,6 +104,7 @@ if (isset($_POST['addcart'])) {
                     </li>
 
                     <?php
+                    // cek login user
                     if (!isset($_SESSION['login'])) {
                         echo '
                     <li class="nav-item">
@@ -113,6 +113,7 @@ if (isset($_POST['addcart'])) {
                     </li>
                     ';
                     } else {
+                        // jika sudah
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="profile.php">Profile
@@ -127,6 +128,7 @@ if (isset($_POST['addcart'])) {
         </div>
     </nav>
 
+    <!-- Search -->
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
             <form method="get" action="seacrh.php" class="d-flex">
@@ -136,8 +138,10 @@ if (isset($_POST['addcart'])) {
             </form>
         </div>
     </section>
+    <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
+    <!-- Alert -->
     <section class="container">
         <?php
         if (isset($message)) {
@@ -146,6 +150,7 @@ if (isset($_POST['addcart'])) {
             }
         }
         ?>
+        <!-- Akhir Alert -->
 
         <!-- View Produk -->
         <form action="" method="post">

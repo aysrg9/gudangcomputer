@@ -2,13 +2,16 @@
 
 session_start();
 
+// cek user login
 if (!isset($_SESSION["loginadmin"])) {
     header("Location: login.php");
     exit;
 }
 
+// koneksi
 require '../functions.php';
 
+// query product
 $product = query("SELECT * FROM product");
 
 // //tombol cari di ketik

@@ -3,6 +3,7 @@
 //Koneksi ke Database
 $db = mysqli_connect("localhost", "root", "", "gudangcomputer");
 
+// function query
 function query($query)
 {
     global $db;
@@ -94,6 +95,7 @@ function registrasic($data)
     return mysqli_affected_rows($db);
 }
 
+// tambah data product
 function tambah($data)
 {
     global $db;
@@ -117,6 +119,7 @@ function tambah($data)
     return mysqli_affected_rows($db);
 }
 
+// upload image product
 function upload()
 {
     $namaFile = $_FILES['gambar']['name'];
@@ -164,6 +167,7 @@ function upload()
     return $namaFileBaru;
 }
 
+// ubah data product
 function ubah($data)
 {
     global $db;
@@ -197,6 +201,7 @@ function ubah($data)
     return mysqli_affected_rows($db);
 }
 
+// hapus data product & image di local
 function hapus($query)
 {
     global $db;
@@ -207,6 +212,7 @@ function hapus($query)
     return mysqli_affected_rows($db);
 }
 
+// upload image profile
 function uploadpicture()
 {
     $nameFile = $_FILES['picture']['name'];
@@ -245,6 +251,7 @@ function uploadpicture()
     return $nameFileBaru;
 }
 
+// ubah profile
 function changeprofile($data)
 {
     global $db;
@@ -269,6 +276,7 @@ function changeprofile($data)
     return mysqli_affected_rows($db);
 }
 
+// format rupiah
 function rupiah($angka)
 {
     $hasil = "Rp " . number_format($angka, '2', ',', '.');

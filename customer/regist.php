@@ -1,7 +1,9 @@
 <?php
 
+// koneksi
 require '../functions.php';
 
+// proses regist
 if (isset($_POST["register"])) {
     if (registrasic($_POST) > 0) {
         echo "

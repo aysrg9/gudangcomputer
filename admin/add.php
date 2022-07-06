@@ -1,16 +1,18 @@
 <?php
+
 session_start();
+
+// cek user login
 if (!isset($_SESSION["loginadmin"])) {
     header("Location: login.php");
     exit;
 }
-// dipakai function
+
+// koneksi
 require '../functions.php';
 
 // cek apakah tombol submit sudah di tekan atau belum 
 if (isset($_POST["upload"])) {
-
-
 
     // cek apakah data berhasil ditambahkan atau tidak
     if (tambah($_POST) > 0) {

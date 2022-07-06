@@ -2,14 +2,19 @@
 
 session_start();
 
+// koneksi 
 require '../functions.php';
 
+// cek user login
 if (!isset($_SESSION["login"])) {
+    // jika belom
     header("Location: login.php");
 } else {
+    // jika sudah, ambil id nya
     $user_id = $_SESSION['id'];
 }
 
+// fungsi update cart
 if (isset($_POST['update_cart'])) {
     $update_quantity = $_POST['cart_quantity'];
     $update_id = $_POST['cart_id'];
@@ -17,12 +22,14 @@ if (isset($_POST['update_cart'])) {
     $message[] = 'Cart quantity updated successfully, click here to close!';
 }
 
+// fungsi remove cart
 if (isset($_GET['remove'])) {
     $remove_id = $_GET['remove'];
     mysqli_query($db, "DELETE FROM `cart` WHERE id = '$remove_id'") or die('query failed');
     header('location:cart.php');
 }
 
+// fungsi delete all
 if (isset($_GET['delete_all'])) {
     mysqli_query($db, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
     header('location:cart.php');
@@ -76,7 +83,9 @@ if (isset($_GET['delete_all'])) {
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
+
                     <?php
+                    // cek apakah user sudah login
                     if (!isset($_SESSION['login'])) {
                         echo '
                     <li class="nav-item">
@@ -86,6 +95,7 @@ if (isset($_GET['delete_all'])) {
                     </li>
                     ';
                     } else {
+                        // jika sudah login
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="profile.php">Profile
@@ -99,6 +109,7 @@ if (isset($_GET['delete_all'])) {
         </div>
     </nav>
 
+    <!-- Search -->
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
             <form method="get" action="seacrh.php" class="d-flex">
@@ -108,6 +119,7 @@ if (isset($_GET['delete_all'])) {
             </form>
         </div>
     </section>
+    <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
     <!-- Alert -->
@@ -117,7 +129,6 @@ if (isset($_GET['delete_all'])) {
                 <i class="bi bi-box"></i> Choose the Free Shipping voucher to enjoy Free Shipping. Happy Shopping !
             </div>
         </div>
-        <!-- Akhir Alert -->
 
         <?php
         if (isset($message)) {
@@ -126,6 +137,7 @@ if (isset($_GET['delete_all'])) {
             }
         }
         ?>
+        <!-- Akhir Alert -->
 
         <!-- Cart -->
         <section id="page-cart" style="height:100vh;">
@@ -201,9 +213,6 @@ if (isset($_GET['delete_all'])) {
         </div>
     </footer>
     <!-- Akhir Footer -->
-
-    <!-- My JS -->
-    <script src="../js/script.js"></script>
 
     <!-- JS Bootstarp -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

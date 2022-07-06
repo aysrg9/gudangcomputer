@@ -2,9 +2,11 @@
 
 session_start();
 
+// cek user login
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 } else {
+    // jika sudah ambil data nya
     $id = $_SESSION['id'];
     $picture = $_SESSION['picture'];
     $username = $_SESSION['username'];
@@ -15,6 +17,7 @@ if (!isset($_SESSION["login"])) {
 // konek function
 require '../functions.php';
 
+// query profile
 $profile = query("SELECT * FROM customer");
 
 // apakah tombol submit sudah di tekan atau belum 
@@ -102,6 +105,7 @@ if (isset($_POST["submit"])) {
         </div>
     </nav>
 
+    <!-- Search -->
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
             <form method="get" action="seacrh.php" class="d-flex">
@@ -111,6 +115,7 @@ if (isset($_POST["submit"])) {
             </form>
         </div>
     </section>
+    <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
     <!-- Form My Profile -->

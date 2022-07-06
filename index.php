@@ -1,11 +1,16 @@
 <?php
+
 session_start();
 
+// koneksi
 require 'functions.php';
 
+// query data product
 $product = query("SELECT * FROM product");
 
+// cek user login
 if (isset($_SESSION['login'])) {
+    // jika sudah
     $id = $_SESSION['id'];
 }
 
@@ -29,14 +34,11 @@ if (isset($_SESSION['login'])) {
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
-
     <!-- My CSS -->
     <link rel="stylesheet" href="./css/market.css">
 
     <!-- Bootsrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-
-
 
     <title>Gudang Computer</title>
 </head>
@@ -60,6 +62,7 @@ if (isset($_SESSION['login'])) {
                     </li>
                     <?php
                     if (!isset($_SESSION['login'])) {
+                        // cek user login
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white"
@@ -68,6 +71,7 @@ if (isset($_SESSION['login'])) {
                     </li>
                     ';
                     } else {
+                        // jika sudah login
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="../gudangcomputer/customer/profile.php">Profile
@@ -81,6 +85,7 @@ if (isset($_SESSION['login'])) {
         </div>
     </nav>
 
+    <!-- Search -->
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
             <form method="get" action="./customer/seacrh.php" class="d-flex">
@@ -90,6 +95,7 @@ if (isset($_SESSION['login'])) {
             </form>
         </div>
     </section>
+    <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
     <!-- Slide -->
@@ -125,7 +131,6 @@ if (isset($_SESSION['login'])) {
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-
         <!-- Akhir Slide -->
 
         <!-- Content Produk -->

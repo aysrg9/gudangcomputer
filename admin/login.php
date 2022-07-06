@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+
+// koneksi
 require '../functions.php';
 
 // cek cookie
@@ -18,11 +20,13 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     }
 }
 
+// cek user login
 if (isset($_SESSION["loginadmin"])) {
     header("Location: index.php");
     exit;
 }
 
+// cek form login
 if (isset($_POST["loginadmin"])) {
 
     $username = $_POST["username"];

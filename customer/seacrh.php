@@ -2,8 +2,10 @@
 
 session_start();
 
+// koneksi
 require '../functions.php';
 
+// ambil keyword
 $keyword = $_GET['keyword'];
 
 ?>
@@ -59,6 +61,7 @@ $keyword = $_GET['keyword'];
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
                     <?php
+                    // cek user login
                     if (!isset($_SESSION['login'])) {
                         echo '
                     <li class="nav-item">
@@ -68,6 +71,7 @@ $keyword = $_GET['keyword'];
                     </li>
                     ';
                     } else {
+                        // jika sudah
                         echo '
                     <li class="nav-item">
                         <a class="nav-link text-white" href="profile.php">Profile
@@ -81,6 +85,7 @@ $keyword = $_GET['keyword'];
         </div>
     </nav>
 
+    <!-- Search -->
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
             <form method="get" action="" class="d-flex">
@@ -90,6 +95,7 @@ $keyword = $_GET['keyword'];
             </form>
         </div>
     </section>
+    <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
     <!-- Content Produk -->

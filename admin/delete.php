@@ -1,11 +1,16 @@
 <?php
 session_start();
+
+// cek user login
 if (!isset($_SESSION["loginadmin"])) {
     header("Location: login.php");
     exit;
 }
+
+// koneksi
 require '../functions.php';
 
+// ambil data di url berdasarkan id
 $id = $_GET["id"];
 
 if (hapus($id) > 0) {

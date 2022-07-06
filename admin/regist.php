@@ -1,13 +1,17 @@
 <?php
 
 session_start();
+
+// wajib login admin
 if (!isset($_SESSION["loginadmin"])) {
     header("Location: login.php");
     exit;
 }
 
+// koneksi
 require '../functions.php';
 
+// proses regist
 if (isset($_POST["register"])) {
     if (registrasi($_POST) > 0) {
         echo "
