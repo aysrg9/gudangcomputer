@@ -121,7 +121,7 @@ if (!isset($_SESSION["login"])) {
     <!-- Checkout -->
     <section class="container">
 
-        <div class="bg-white mb-3 mt-3 border border-primary">
+        <div class="bg-white mb-3 mt-3 border border-primary shadow">
             <div class="mb-3 ps-4 pe-4 mt-3">
                 <label for="addres" class="form-label fw-bold fs-5 text-primary">
                     <i class="bi bi-geo-alt-fill"></i> Shipping address
@@ -131,7 +131,7 @@ if (!isset($_SESSION["login"])) {
             </div>
         </div>
 
-        <div class="card mb-3 border border-primary" style="max-width: 100%;">
+        <div class="card mb-3 border border-primary shadow" style="max-width: 100%;">
             <div class="row g-0">
                 <div class="col-md-2">
                     <p class="text-center mt-4">
@@ -150,7 +150,7 @@ if (!isset($_SESSION["login"])) {
             </div>
         </div>
 
-        <div class="bg-white mb-3 mt-3 border border-primary">
+        <div class="bg-white mb-3 mt-3 border border-primary shadow">
             <div class="mb-3 ps-4 pe-4 mt-3">
                 <label for="voucher" class="form-label fw-bold fs-5 text-primary">
                     <i class="bi bi-ticket-perforated-fill"></i> Code Voucher
@@ -159,7 +159,7 @@ if (!isset($_SESSION["login"])) {
             </div>
         </div>
 
-        <div class="bg-white mb-5 mt-3 border border-primary">
+        <div class="bg-white mb-5 mt-3 border border-primary shadow">
 
             <?php
             $grand_total = 0;

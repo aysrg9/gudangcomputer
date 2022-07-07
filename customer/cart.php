@@ -14,14 +14,6 @@ if (!isset($_SESSION["login"])) {
     $user_id = $_SESSION['id'];
 }
 
-// fungsi update cart
-if (isset($_POST['update_cart'])) {
-    $update_quantity = $_POST['cart_quantity'];
-    $update_id = $_POST['cart_id'];
-    mysqli_query($db, "UPDATE `cart` SET quantity = '$update_quantity' WHERE id = '$update_id'") or die('query failed');
-    $message[] = 'Cart quantity updated successfully, click here to close!';
-}
-
 // fungsi remove cart
 if (isset($_GET['remove'])) {
     $remove_id = $_GET['remove'];
@@ -33,11 +25,6 @@ if (isset($_GET['remove'])) {
 if (isset($_GET['delete_all'])) {
     mysqli_query($db, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
     header('location:cart.php');
-}
-
-// fungsi checkout
-if (isset($_POST['checkout'])) {
-    header("Location: buy.php");
 }
 
 ?>
@@ -153,7 +140,6 @@ if (isset($_POST['checkout'])) {
                         <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Total Price</th>
                         <th>Action</th>
                     </thead>
 
@@ -164,28 +150,30 @@ if (isset($_POST['checkout'])) {
                         if (mysqli_num_rows($cart_query) > 0) {
                             while ($fetch_cart = mysqli_fetch_assoc($cart_query)) {
                         ?>
-                        <tr>
-                            <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
-                                    alt=""></td>
-                            <td>
-                                <?php echo $fetch_cart['name']; ?>
-                            </td>
-                            <td><?php echo rupiah($fetch_cart['price']); ?></td>
-                            <td>
-                                <form action="" method="post">
-                                    <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
-                                    <input id="keyword" style="width: 70px;" type="number" min="1" name="cart_quantity"
-                                        value="<?php echo $fetch_cart['quantity']; ?>">
-                                    <button id="update" type="submit" name="update_cart"
-                                        class="option-btn btn btn-dark btn-sm fw-bold border border-dark">UPDATE
-                                </form>
-                            </td>
-                            <td><?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-
-                            </td>
-                            <td><a href=" cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
-                                    onclick="return confirm('remove item from cart?');"><i
-                                        class="bi bi-trash-fill text-white fs-3"></i></a>
-                            </td>
+
+                        <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
+                                alt=""></td>
+                        <td class="text-truncate">
+                            <?php echo $fetch_cart['name']; ?>
+                        </td>
+                        <td><?php echo rupiah($fetch_cart['price']); ?></td>
+                        <td>
+                            <form action="" method="post">
+                                <input type="hidden" name="cart_id" value="<?php echo $fetch_cart['id']; ?>">
+                                <p><?php echo $fetch_cart['quantity']; ?></p>
+                            </form>
+                        </td>
+                        <?php $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>
+                        <td>
+                            <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
+                                onclick="return confirm('remove item from cart?');"><i
+                                    class="bi bi-trash-fill text-white fs-3 me-1"></i>
+                            </a>
+
+                            <a href="buy.php?id=<?php echo $fetch_cart['id_product']; ?>"><i
+                                    class="bi bi-credit-card fs-3 text-white ms-1"></i>
+                            </a>
+                        </td>
                         </tr>
                         <?php
                                 $grand_total += $sub_total;
@@ -195,23 +183,19 @@ if (isset($_POST['checkout'])) {
                         }
                         ?>
                         <tr class="table-bottom">
-                            <td colspan="4">Grand Total :</td>
+                            <td colspan="3">Subtotal :</td>
                             <td><?php echo rupiah($grand_total); ?></td>
                             <td><a href="cart.php?delete_all" onclick="return confirm('delete all from cart?');"
                                     class="delete-btn text-white<?php echo ($grand_total > 1) ? '' : 'disabled d-none'; ?>">DELETE
-                                    ALL</a>
+                                    ALL
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
-                <form action="" method="POST">
-                    <p class="text-end">
-                        <a class="btn btn-primary fw-bold">CHECKOUT</a>
-                    </p>
-                </form>
-
             </div>
+            <form action="" method="POST">
+
+            </form>
         </section>
     </section>
     <!-- Akhir Cart -->
