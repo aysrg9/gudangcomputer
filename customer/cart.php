@@ -15,15 +15,22 @@ if (!isset($_SESSION["login"])) {
     $user_id = $_SESSION['id'];
 }
 
-$cart = mysqli_query($db, "SELECT * FROM `cart` WHERE user_id = '$user_id'");
-mysqli_num_rows($cart);
-$fetch = mysqli_fetch_assoc($cart);
 
-if (isset($_POST['buy'])) {
-    $idd = $fetch['id_product'];
-    header("Location:buy.php?id=$idd");
-    $_SESSION['quantity'] = $fetch['quantity'];
+$cart = mysqli_query($db, "SELECT * FROM cart WHERE user_id = '$user_id'");
+if (mysqli_num_rows($cart) > 0) {
+    while ($fetch = mysqli_fetch_assoc($cart)) {
+        var_dump($fetch['id_product']);
+        if (isset($_POST['buy'])) {
+            $id_product = $fetch['id_product'];
+            header("Location:buy.php?id=$id_product");
+            $_SESSION['quantity'] = $fetch['quantity'];
+        }
+    }
 }
+
+// $cart = mysqli_query($db, "SELECT * FROM `cart` WHERE user_id = '$user_id'");
+// mysqli_num_rows($cart);
+// $fetch = mysqli_fetch_assoc($cart);
 
 // fungsi remove cart
 if (isset($_GET['remove'])) {
@@ -178,9 +185,7 @@ if (isset($_GET['delete_all'])) {
                         <td>
 
                             <form action="" method="post">
-                                <input name="jumlah" type="hidden" value="<?php echo $jumlah ?>">
-                                <button type="submit" name="buy"
-                                    class="btn btn-primary btn-sm uppercase fw-bold fs-3 d-inline"><i
+                                <button name="buy" class="btn btn-primary btn-sm uppercase fw-bold fs-3 d-inline"><i
                                         class="bi bi-credit-card"></i></button>
                             </form>
 
@@ -209,9 +214,6 @@ if (isset($_GET['delete_all'])) {
                     </tbody>
                 </table>
             </div>
-            <form action="" method="POST">
-
-            </form>
         </section>
     </section>
     <!-- Akhir Cart -->
