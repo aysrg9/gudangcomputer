@@ -14,17 +14,17 @@ $id = $_GET["id"];
 //query data product berdasarkan id
 $prdct = query("SELECT * FROM product WHERE id = $id")[0];
 
+
 // cek user login
 if (!isset($_SESSION["login"])) {
-    // cek apakah user sudah login
-    if (!isset($_SESSION['login'])) {
-        // apabila belom login
-        header('Location: login.php');
-    }
+    header('Location: login.php');
+} else {
     // jika sudah, ambil id nya
     $user_id = $_SESSION['id'];
-    $quantity = $_SESSION['quantity'];
+    $_SESSION['quantity'];
 }
+
+
 
 ?>
 <!doctype html>

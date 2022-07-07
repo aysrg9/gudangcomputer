@@ -94,14 +94,12 @@ if (isset($_POST['addcart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Font Goole -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 
     <!-- My CSS -->
@@ -118,8 +116,7 @@ if (isset($_POST['addcart'])) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Gudang Computer</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -160,8 +157,7 @@ if (isset($_POST['addcart'])) {
     <section id="search" class="navbar navbar-expand-lg">
         <div class="navbar-collapse d-flex justify-content-center">
             <form method="get" action="seacrh.php" class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword"
-                    autocomplete="off">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword" autocomplete="off">
                 <button class="btn btn-primary" name="cari" id="tombol-cari"><i class="bi bi-search"></i></button>
             </form>
         </div>
@@ -186,8 +182,7 @@ if (isset($_POST['addcart'])) {
                 <div class=" row g-0">
                     <div class="col-md-4">
                         <p class="text-center mt-4">
-                            <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start"
-                                alt="...">
+                            <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start" alt="...">
                         </p>
                     </div>
                     <div class="col-md-8 mb-">
@@ -202,8 +197,7 @@ if (isset($_POST['addcart'])) {
                                 and have an official guarantee, for a warranty claim, you just have to come to our
                                 store.
                                 Thank you.</p>
-                            <p class="card-text"><small class="text-muted"><a href="<?= $prdct["spesifikasi"]; ?>"
-                                        target="_blank">Read more
+                            <p class="card-text"><small class="text-muted"><a href="<?= $prdct["spesifikasi"]; ?>" target="_blank">Read more
                                         about the product
                                         here</a></small></p>
                             <p class="card-text"><small class="text-muted">Stock <?= $prdct["stock"]; ?></small></p>
@@ -219,8 +213,7 @@ if (isset($_POST['addcart'])) {
                             <div class="button-buy-chart">
                                 <input type="number" min="1" name="product_quantity" value="1">
                                 <p class="mt-3">
-                                    <button type="submit" name="buynow"
-                                        class="btn btn-primary fw-bold text-uppercase">buy
+                                    <button type="submit" name="buynow" class="btn btn-primary fw-bold text-uppercase">buy
                                         now
                                     </button>
                                 </p>
@@ -254,8 +247,7 @@ if (isset($_POST['addcart'])) {
     <!-- Akhir Footer -->
 
     <!-- JS Bootstarp -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
 

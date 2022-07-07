@@ -5,6 +5,7 @@ session_start();
 // koneksi 
 require '../functions.php';
 
+
 // cek user login
 if (!isset($_SESSION["login"])) {
     // jika belom
@@ -12,6 +13,16 @@ if (!isset($_SESSION["login"])) {
 } else {
     // jika sudah, ambil id nya
     $user_id = $_SESSION['id'];
+}
+
+$cart = mysqli_query($db, "SELECT * FROM `cart` WHERE user_id = '$user_id'");
+mysqli_num_rows($cart);
+$fetch = mysqli_fetch_assoc($cart);
+
+if (isset($_POST['buy'])) {
+    $idd = $fetch['id_product'];
+    header("Location:buy.php?id=$idd");
+    $_SESSION['quantity'] = $fetch['quantity'];
 }
 
 // fungsi remove cart
@@ -150,7 +161,6 @@ if (isset($_GET['delete_all'])) {
                         if (mysqli_num_rows($cart_query) > 0) {
                             while ($fetch_cart = mysqli_fetch_assoc($cart_query)) {
                         ?>
-
                         <td><img src="../image/product/<?php echo $fetch_cart['image']; ?>" height="80" width="80px"
                                 alt=""></td>
                         <td class="text-truncate">
@@ -163,16 +173,22 @@ if (isset($_GET['delete_all'])) {
                                 <p><?php echo $fetch_cart['quantity']; ?></p>
                             </form>
                         </td>
+
                         <?php $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>
                         <td>
-                            <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
-                                onclick="return confirm('remove item from cart?');"><i
-                                    class="bi bi-trash-fill text-white fs-3 me-1"></i>
-                            </a>
 
-                            <a href="buy.php?id=<?php echo $fetch_cart['id_product']; ?>"><i
-                                    class="bi bi-credit-card fs-3 text-white ms-1"></i>
-                            </a>
+                            <form action="" method="post">
+                                <input name="jumlah" type="hidden" value="<?php echo $jumlah ?>">
+                                <button type="submit" name="buy"
+                                    class="btn btn-primary btn-sm uppercase fw-bold fs-3 d-inline"><i
+                                        class="bi bi-credit-card"></i></button>
+                            </form>
+
+                            <button class="btn btn-primary btn-sm d-inline">
+                                <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
+                                    onclick="return confirm('remove item from cart?');"><i
+                                        class="bi bi-trash-fill text-white fs-3 ms-1"></i></a>
+                            </button>
                         </td>
                         </tr>
                         <?php

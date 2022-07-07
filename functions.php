@@ -15,6 +15,17 @@ function query($query)
     return $rows;
 }
 
+function queryy($queryy)
+{
+    global $db;
+    $resultt = mysqli_query($db, $queryy);
+    $rowss = [];
+    while ($roww = mysqli_fetch_assoc($resultt)) {
+        $rowss[] = $roww;
+    }
+    return $rowss;
+}
+
 // Regist Page Admin
 function registrasi($data)
 {
