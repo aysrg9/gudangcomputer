@@ -67,8 +67,6 @@ if (isset($_POST["submit"])) {
     <!-- Sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script src="../js/script.js"></script>
-
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/market.css">
 
@@ -126,7 +124,7 @@ if (isset($_POST["submit"])) {
     <section class="container mb-5" style="background-color: white;">
         <!-- Header -->
         <section class="jumbotron mb-4 mt-5">
-            <h1 class="display-5 fw-bold">Profile <?php echo $_SESSION['nama'] ?></h1>
+            <h1 class="display-5 fw-bold pt-3">Profile <?php echo $_SESSION['nama'] ?></h1>
             <p>Manage your profile information to control, protect and secure your account</p>
         </section>
         <!-- Akhir Header -->

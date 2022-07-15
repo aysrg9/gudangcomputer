@@ -15,24 +15,18 @@ if (!isset($_SESSION["login"])) {
     $user_id = $_SESSION['id'];
 }
 
-
-$cart = mysqli_query($db, "SELECT * FROM cart WHERE user_id = '$user_id'");
-if (mysqli_num_rows($cart) > 0) {
-    while ($fetch = mysqli_fetch_assoc($cart)) {
-        var_dump($fetch['id_product']);
-        if (isset($_POST['buy'])) {
-            $id_product = $fetch['id_product'];
-            header("Location:buy.php?id=$id_product");
+// fungsi checkout
+if (isset($_GET['id'])) {
+    $cart = mysqli_query($db, "SELECT * FROM cart WHERE user_id = '$user_id'");
+    if (mysqli_num_rows($cart) > 0) {
+        while ($fetch = mysqli_fetch_assoc($cart)) {
             $_SESSION['quantity'] = $fetch['quantity'];
         }
     }
 }
 
-// $cart = mysqli_query($db, "SELECT * FROM `cart` WHERE user_id = '$user_id'");
-// mysqli_num_rows($cart);
-// $fetch = mysqli_fetch_assoc($cart);
 
-// fungsi remove cart
+// fungsi remove
 if (isset($_GET['remove'])) {
     $remove_id = $_GET['remove'];
     mysqli_query($db, "DELETE FROM `cart` WHERE id = '$remove_id'") or die('query failed');
@@ -183,17 +177,19 @@ if (isset($_GET['delete_all'])) {
 
                         <?php $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>
                         <td>
+                            <a href="buy.php?id=<?php echo $fetch_cart['id_product']; ?>" class="delete-btn">
+                                <button class="btn btn-primary btn-sm uppercase fw-bold fs-3 d-inline">
+                                    <i class="bi bi-credit-card"></i>
+                                </button>
+                            </a>
 
-                            <form action="" method="post">
-                                <button name="buy" class="btn btn-primary btn-sm uppercase fw-bold fs-3 d-inline"><i
-                                        class="bi bi-credit-card"></i></button>
-                            </form>
 
-                            <button class="btn btn-primary btn-sm d-inline">
-                                <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
-                                    onclick="return confirm('remove item from cart?');"><i
-                                        class="bi bi-trash-fill text-white fs-3 ms-1"></i></a>
-                            </button>
+                            <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"
+                                onclick="return confirm('remove item from cart?');">
+                                <button class="btn btn-primary btn-sm d-inline">
+                                    <i class="bi bi-trash-fill text-white fs-3 ms-1"></i>
+                                </button>
+                            </a>
                         </td>
                         </tr>
                         <?php

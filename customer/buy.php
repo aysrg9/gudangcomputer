@@ -24,6 +24,26 @@ if (!isset($_SESSION["login"])) {
     $_SESSION['quantity'];
 }
 
+// cek apakah tombol submit sudah di tekan atau belum 
+if (isset($_POST["buy"])) {
+
+    // cek apakah data berhasil ditambahkan atau tidak
+    if (checkout($_POST) > 0) {
+        echo "
+            <script>
+                alert('Successfully!');
+                document.location.href = '../index.php';
+            </script>
+       ";
+    } else {
+        echo "
+        <script>
+            alert('Failed!');
+            document.location.href = '../index.php';
+        </script>
+        ";
+    }
+}
 
 
 ?>
@@ -121,93 +141,100 @@ if (!isset($_SESSION["login"])) {
     <!-- Checkout -->
     <section class="container">
 
-        <div class="bg-white mb-3 mt-3 border border-primary shadow">
-            <div class="mb-3 ps-4 pe-4 mt-3">
-                <label for="addres" class="form-label fw-bold fs-5 text-primary">
-                    <i class="bi bi-geo-alt-fill"></i> Shipping address
-                </label>
-                <input type="Text" class="form-control" id="addres" placeholder="Jakarta, Indonesia"
-                    value="Jakarta, Indonesia" required>
-            </div>
-        </div>
+        <form action="" method="post">
 
-        <div class="card mb-3 border border-primary shadow" style="max-width: 100%;">
-            <div class="row g-0">
-                <div class="col-md-2">
-                    <p class="text-center mt-4">
-                        <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start" alt="..."
-                            width="100px" height="100px">
-                    </p>
+            <div class="bg-white mb-3 mt-3 border border-primary shadow">
+                <div class="mb-3 ps-4 pe-4 mt-3">
+                    <label for="addres" class="form-label fw-bold fs-5 text-primary">
+                        <i class="bi bi-geo-alt-fill"></i> Shipping address
+                    </label>
+                    <input type="Text" class="form-control" id="addres" placeholder="Jakarta, Indonesia"
+                        value="Jakarta, Indonesia" required>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold"><?= $prdct["nama"]; ?></h5>
-                        <p class="card-text d-inline me-3"><?= rupiah($prdct["price"]); ?></p>
-                        <p class="card-text d-inline me-3">Stock <?= $prdct["stock"]; ?></p>
-                        <p class="card-text d-inline">Quantity <?php echo $_SESSION['quantity'] ?></p>
+            </div>
+
+            <div class="card mb-3 border border-primary shadow" style="max-width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <p class="text-center mt-4">
+                            <img src="../image/product/<?= $prdct["gambar"]; ?>" class="img-fluid rounded-start"
+                                alt="..." width="100px" height="100px">
+                        </p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold"><?= $prdct["nama"]; ?></h5>
+                            <p class="card-text d-inline me-3"><?= rupiah($prdct["price"]); ?></p>
+                            <p id="stock" class="card-text d-inline me-3">Stock <?= $prdct["stock"]; ?></p>
+                            <input type="hidden" class="me-3" type="text" value="<?= $prdct["stock"]; ?>" name="stock">
+                            <p class="card-text d-inline">Quantity <?php echo $_SESSION['quantity'] ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="bg-white mb-3 mt-3 border border-primary shadow">
-            <div class="mb-3 ps-4 pe-4 mt-3">
-                <label for="voucher" class="form-label fw-bold fs-5 text-primary">
-                    <i class="bi bi-ticket-perforated-fill"></i> Code Voucher
-                </label>
-                <input type="Text" class="form-control" id="voucher" placeholder="freeshipping">
+            <div class="bg-white mb-3 mt-3 border border-primary shadow">
+                <div class="mb-3 ps-4 pe-4 mt-3">
+                    <label for="voucher" class="form-label fw-bold fs-5 text-primary">
+                        <i class="bi bi-ticket-perforated-fill"></i> Code Voucher
+                    </label>
+                    <input type="Text" class="form-control" id="voucher" placeholder="freeshipping">
+                </div>
             </div>
-        </div>
 
-        <div class="bg-white mb-5 mt-3 border border-primary shadow">
+            <div class="bg-white mb-5 mt-3 border border-primary shadow">
 
-            <?php
-            $grand_total = 0;
-            ?>
+                <?php
+                $grand_total = 0;
+                ?>
 
-            <?php $sub_total = ($prdct['price'] * $_SESSION['quantity']); ?>
+                <?php $sub_total = ($prdct['price'] * $_SESSION['quantity']); ?>
 
-            <?php
-            $grand_total += $sub_total; {
-            }
+                <?php
+                $grand_total += $sub_total; {
+                }
 
-            ?>
+                ?>
 
-            <div class="mb-3 ps-4 pe-4 mt-3">
+                <div class="mb-3 ps-4 pe-4 mt-3">
 
-                <div class="d-flex">
-                    <div class="p-2 fw-bold text-primary fs-5"><i class="bi bi-credit-card"></i> Payment Method</div>
-                    <div class="p-2 fs-5">:</div>
-                    <div class="ms-auto p-2 fw-bold fs-5">Cash On Delivery Only</div>
+                    <div class="d-flex">
+                        <div class="p-2 fw-bold text-primary fs-5"><i class="bi bi-credit-card"></i> Payment Method
+                        </div>
+                        <div class="p-2 fs-5">:</div>
+                        <div class="ms-auto p-2 fw-bold fs-5">Cash On Delivery Only</div>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-flex">
+                        <div class="p-2">Handling Fee</div>
+                        <div class="p-2">:</div>
+                        <div class="ms-auto p-2">Rp 0</div>
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="p-2">Total shipping cost</div>
+                        <div class="p-2">:</div>
+                        <div class="ms-auto p-2">Rp 0</div>
+                    </div>
+
+                    <div class="d-flex mb-3">
+                        <div class="p-2">Subtotal</div>
+                        <div class="p-2">:</div>
+                        <div class="ms-auto p-2 fw-bold text-primary fs-5"><?php echo rupiah($grand_total); ?></div>
+                    </div>
+
+                    <hr>
+
+                    <p class="text-end">
+                        <button name="buy" type="submit" class="btn btn-primary btn-sm text-uppercase fw-bold">make an
+                            order</button>
+                    </p>
                 </div>
-
-                <hr>
-
-                <div class="d-flex">
-                    <div class="p-2">Handling Fee</div>
-                    <div class="p-2">:</div>
-                    <div class="ms-auto p-2">Rp 0</div>
-                </div>
-
-                <div class="d-flex">
-                    <div class="p-2">Total shipping cost</div>
-                    <div class="p-2">:</div>
-                    <div class="ms-auto p-2">Rp 0</div>
-                </div>
-
-                <div class="d-flex mb-3">
-                    <div class="p-2">Subtotal</div>
-                    <div class="p-2">:</div>
-                    <div class="ms-auto p-2 fw-bold text-primary fs-5"><?php echo rupiah($grand_total); ?></div>
-                </div>
-
-                <hr>
-
-                <p class="text-end">
-                    <button type="submit" class="btn btn-primary btn-sm text-uppercase fw-bold">make an order</button>
-                </p>
             </div>
-        </div>
+
+        </form>
 
     </section>
     <!-- Akhir Checkout -->

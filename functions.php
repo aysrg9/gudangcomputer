@@ -212,6 +212,26 @@ function ubah($data)
     return mysqli_affected_rows($db);
 }
 
+// checkout
+function checkout($data)
+{
+    global $db;
+    $id = $_GET["id"];
+    $quantity = $_SESSION['quantity'];
+    $stock = htmlspecialchars($data["stock"]);
+
+    $jumlah = $stock - $quantity;
+
+    $query = "UPDATE product SET 
+                stock = '$jumlah'
+                
+                WHERE id = $id
+                ";
+
+    mysqli_query($db, $query);
+    return mysqli_affected_rows($db);
+}
+
 // hapus data product & image di local
 function hapus($query)
 {
