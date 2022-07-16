@@ -15,6 +15,25 @@ require '../functions.php';
 
 $detailorder = query("SELECT * FROM detailorder WHERE user_id = $user_id");
 
+if (isset($_POST['confirm'])) {
+    // cek apakah status berhasil dirubah
+    if (confirm($_POST) > 0) {
+        echo "
+            <script>
+                alert('Failed!');
+                document.location.href = '../index.php';
+            </script>
+       ";
+    } else {
+        echo "
+        <script>
+            alert('Thank You!');
+            document.location.href = 'order.php';
+        </script>
+        ";
+    }
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -104,50 +123,54 @@ $detailorder = query("SELECT * FROM detailorder WHERE user_id = $user_id");
 
     <!-- Order-->
     <section class="container mb-5 mt-5" style="background-color: white; height: 100vh;">
-        <div class="table-responsive">
-            <table class="table bg-primary container text-center text-white mb-1 mt-3 fw-bold">
+        <form action="" method="post">
+            <div class="table-responsive">
+                <table class="table bg-primary container text-center text-white mb-1 mt-3 fw-bold">
 
-                <thead class="text-uppercase">
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </thead>
+                    <thead class="text-uppercase">
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </thead>
 
-                <tbody>
-                    <?php
-                    $order_query = mysqli_query($db, "SELECT * FROM `detailorder` WHERE user_id = '$user_id'") or die('query failed');
-                    $grand_total = 0;
-                    if (mysqli_num_rows($order_query) > 0) {
-                        while ($fetch_order = mysqli_fetch_assoc($order_query)) {
-                    ?>
-                    <td>
-                        <?php echo $fetch_order['name']; ?>
-                    </td>
-                    <td class="text-truncate">
-                        <?php echo $fetch_order['alamat']; ?>
-                    </td>
-                    <td><?php echo $fetch_order['quantity']; ?></td>
-                    <td>
-                        <p><?php echo rupiah($fetch_order['price']); ?></p>
-                    </td>
+                    <tbody>
+                        <?php
+                        $order_query = mysqli_query($db, "SELECT * FROM `detailorder` WHERE user_id = '$user_id'") or die('query failed');
+                        $grand_total = 0;
+                        if (mysqli_num_rows($order_query) > 0) {
+                            while ($fetch_order = mysqli_fetch_assoc($order_query)) {
+                        ?>
+                        <input type="hidden" name="id" value="<?php echo $fetch_order['id']; ?>">
+                        <input type="hidden" name="status" value="Confirm">
+                        <td>
+                            <?php echo $fetch_order['name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $fetch_order['alamat']; ?>
+                        </td>
+                        <td><?php echo $fetch_order['quantity']; ?></td>
+                        <td>
+                            <p><?php echo rupiah($fetch_order['price']); ?></p>
+                        </td>
 
-                    <td>
-                        <?php echo $fetch_order['status']; ?>
-                    </td>
-                    <td><button class="btn btn-primary btn-sm fw-bold">CONFIRM</button></td>
-                    </tr>
-                    <?php
+                        <td>
+                            <?php echo $fetch_order['status']; ?>
+                        </td>
+                        <td><button name="confirm" class="btn btn-primary btn-sm fw-bold">CONFIRM</button></td>
+                        </tr>
+                        <?php
+                            }
+                        } else {
+                            echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
                         }
-                    } else {
-                        echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </form>
     </section>
     <!-- Akhir Order -->
 

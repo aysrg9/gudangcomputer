@@ -212,6 +212,17 @@ function ubah($data)
     return mysqli_affected_rows($db);
 }
 
+// confirm
+function confirm($data)
+{
+    global $db;
+    //ambil dari data dari tiap elemen dalam form
+    $id = $data["id"];
+    $status = $data['status'];
+
+    mysqli_query($db, "UPDATE detailorder SET status = '$status' WHERE id = $id");
+}
+
 // checkout
 function checkout($data)
 {
