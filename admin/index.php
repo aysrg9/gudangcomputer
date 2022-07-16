@@ -54,7 +54,7 @@ require '../functions.php';
                             <a class="nav-link text-white" href="index.php">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white disabled" href="pricing.php">Order List</a>
+                            <a class="nav-link text-white" href="orderlist.php">Order List</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="product.php">Product</a>

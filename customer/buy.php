@@ -33,7 +33,7 @@ if (isset($_POST["buy"])) {
             <script>
                 alert('Process!');
                 alert('Your Order Was Successful!');
-                document.location.href = '../index.php';
+                document.location.href = 'order.php';
             </script>
        ";
     } else {
@@ -57,7 +57,7 @@ if (isset($_POST["buy"])) {
         echo "
         <script>
             alert('Your Order Was Successful!');
-            document.location.href = '../index.php';
+            document.location.href = 'order.php';
         </script>
         ";
     }

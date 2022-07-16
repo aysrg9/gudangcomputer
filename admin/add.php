@@ -77,7 +77,7 @@ if (isset($_POST["upload"])) {
                         <a class="nav-link text-white" href="index.php">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white disabled" href="pricing.php">Order List</a>
+                        <a class="nav-link text-white" href="orderlist.php">Order List</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="product.php">Product</a>
@@ -113,7 +113,7 @@ if (isset($_POST["upload"])) {
                 <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock">
             </div>
             <div class="mb-4">
-                <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+                <input type="number" class="form-control" id="price" name="price" placeholder="Price">
             </div>
             <div class="mb-3">
                 <input type="file" class="form-control" id="gambar" name="gambar" placeholder="Image">

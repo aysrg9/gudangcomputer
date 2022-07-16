@@ -341,3 +341,27 @@ function rupiah($angka)
     $hasil = "Rp " . number_format($angka, '2', ',', '.');
     return $hasil;
 }
+
+// cari product admin
+function cari($keyword)
+{
+    $query = "SELECT * FROM product
+                WHERE
+                nama LIKE '%$keyword%' OR 
+                stock LIKE '%$keyword%' OR
+                price LIKE '%$keyword%'
+            ";
+    return query($query);
+}
+
+// cari detail order admin
+function nyari($keyword)
+{
+    $query = "SELECT * FROM detailorder
+                WHERE
+                name LIKE '%$keyword%' OR 
+                user_id LIKE '%$keyword%' OR
+                alamat LIKE '%$keyword%'
+            ";
+    return query($query);
+}

@@ -177,11 +177,11 @@ if (isset($_GET['delete_all'])) {
 
                         <?php $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>
                         <td>
-                            <a class="delete-btn">
+                            <!-- <a class="delete-btn">
                                 <button class="btn btn-primary btn-sm uppercase fw-bold fs-3 d-inline">
                                     <i class="bi bi-credit-card"></i>
                                 </button>
-                            </a>
+                            </a> -->
 
 
                             <a href="cart.php?remove=<?php echo $fetch_cart['id']; ?>" class="delete-btn"

@@ -63,7 +63,7 @@ if (isset($_POST['confirm'])) {
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/market.css">
 
-    <title>Profile</title>
+    <title>My Order</title>
 </head>
 
 <body>
@@ -124,7 +124,7 @@ if (isset($_POST['confirm'])) {
     <!-- Alert -->
     <div class="alert alert-warning d-flex align-items-center mt-3 border border-secondary container" role="alert">
         <div class="text-dark fw-bold">
-            <i class="bi bi-box"></i> Confirm if the goods have been received !
+            Click <i class="bi bi-check-square-fill"></i> To Confirm !
         </div>
     </div>
     <!-- Akhir Alert -->
@@ -168,7 +168,8 @@ if (isset($_POST['confirm'])) {
                             <?php echo $fetch_order['status']; ?>
                         </td>
 
-                        <td><button name="confirm" class="btn btn-primary btn-sm fw-bold">CONFIRM</button></td>
+                        <td><button name="confirm" class="btn btn-primary btn-sm fw-bold fs-5"><i
+                                    class="bi bi-check-square-fill"></button></td>
 
                         </tr>
                         <?php

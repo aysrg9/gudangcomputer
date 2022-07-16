@@ -12,11 +12,30 @@ if (!isset($_SESSION["loginadmin"])) {
 require '../functions.php';
 
 // query product
-$product = query("SELECT * FROM product");
+$detailorder = query("SELECT * FROM detailorder");
+
+if (isset($_POST['confirm'])) {
+    // cek apakah status berhasil dirubah
+    if (confirm($_POST) > 0) {
+        echo "
+            <script>
+                alert('Failed!');
+                document.location.href = '../index.php';
+            </script>
+       ";
+    } else {
+        echo "
+        <script>
+            alert('Confirmed!');
+            document.location.href = 'orderlist.php';
+        </script>
+        ";
+    }
+}
 
 // tombol cari di ketik
-if (isset($_POST["cari"])) {
-    $product = cari($_POST["keyword"]);
+if (isset($_POST["nyari"])) {
+    $detailorder = nyari($_POST["keywordd"]);
 }
 
 
@@ -47,7 +66,7 @@ if (isset($_POST["cari"])) {
     <!-- Bootstrap Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <title>Product</title>
+    <title>Order List</title>
 </head>
 
 <body>
@@ -84,70 +103,82 @@ if (isset($_POST["cari"])) {
 
         <!-- Header -->
         <section class="jumbotron text-center mb-5" style="margin-top: 100px;">
-            <h1 class="display-5 text-uppercase fw-bold">Product</h1>
+            <h1 class="display-5 text-uppercase fw-bold">Order list</h1>
             <hr class="text-primary underline">
         </section>
         <!-- Akhir Header -->
 
-        <!-- Tambah Data -->
-        <a href="add.php" class="d-inline-block float-start">
-            <button class="btn btn-primary fw-bold text-uppercase">Add Product</button>
-        </a>
-        <!-- Akhir Tambah Data -->
-
         <!-- Search -->
         <form action="" method="post">
-            <input class="form-control container mb-3 w-25 float-end" type="search" list="datalistOptions" id="keyword"
-                name="keyword" autocomplete="off" placeholder="Type to search...">
-            <button type="submit" name="cari" id="tombol-cari"
+            <input class="form-control container mb-3 w-25 float-end" type="search" list="datalistOptions" id="keywordd"
+                name="keywordd" autocomplete="off" placeholder="Type to search...">
+            <button type="submit" name="nyari" id="tombol-cari"
                 class="btn btn-primary ms-1 text-uppercase fw-bold float-end d-none">Cari</button>
         </form>
         <!-- Akhir Search -->
 
         <!-- Tables -->
         <div id="container">
-            <table class="table bg-primary container text-center text-white mb-5 fw-bold">
-                <tr class="text-uppercase">
-                    <th>No</th>
-                    <th>Action</th>
+            <table class="table bg-primary container text-center text-white mb-5 mt-3 fw-bold">
+
+                <thead class="text-uppercase">
+                    <th>User ID</th>
                     <th>Name</th>
-                    <th>Specification</th>
-                    <th>Stock</th>
+                    <th>Address</th>
+                    <th>Quantity</th>
                     <th>Price</th>
-                    <th>Image</th>
-                </tr>
+                    <th>Status</th>
+                    <th>Action</th>
+                </thead>
 
-                <?php $i = 1; ?>
-                <?php foreach ($product as $row) : ?>
+                <tbody>
+                    <?php
+                    $order_query = mysqli_query($db, "SELECT * FROM `detailorder`") or die('query failed');
+                    $grand_total = 0;
+                    if (mysqli_num_rows($order_query) > 0) {
+                        while ($fetch_order = mysqli_fetch_assoc($order_query)) {
+                    ?>
+                    <form action="" method="post">
+                        <input type="hidden" name="id" value="<?php echo $fetch_order['id']; ?>">
+                        <input type="hidden" name="status" value="Confirm">
+                        <th><?php echo $fetch_order['user_id'] ?></th>
+                        <td>
+                            <?php echo $fetch_order['name']; ?>
+                        </td>
+                        <td>
+                            <?php echo $fetch_order['alamat']; ?>
+                        </td>
+                        <td><?php echo $fetch_order['quantity']; ?></td>
+                        <td>
+                            <p><?php echo rupiah($fetch_order['price']); ?></p>
+                        </td>
 
-                <tr>
-                    <td><?= $i ?></td>
-                    <td class="fs-5">
-                        <a onclick="return confirm('Are You Sure?')" class="text-white"
-                            href="delete.php?id=<?= $row["id"] ?>"><i class="bi bi-trash-fill"></i></a>
-                        |
-                        <a class="text-white" href="change.php?id=<?= $row["id"] ?>"><i
-                                class="bi bi-pencil-square"></i></a>
-                    </td>
-                    <td><?= $row["nama"] ?></td>
-                    <td><a class="text-white" href="<?= $row["spesifikasi"] ?>" target="_blank">CLICK HERE</a></td>
-                    <td><?= $row["stock"] ?></td>
-                    <td><?= rupiah($row["price"]) ?></td>
-                    <td><a href="../image/product/<?= $row["gambar"] ?>" target="_blank"><img
-                                src="../image/product/<?= $row["gambar"] ?>" alt="" width="80px"></a></td>
-                </tr>
+                        <td>
+                            <?php echo $fetch_order['status']; ?>
+                        </td>
 
-                <?php $i++ ?>
-                <?php endforeach; ?>
 
+                        <td><button name="confirm" class="btn btn-primary btn-sm fw-bold fs-5"><i
+                                    class="bi bi-check-square-fill"></button></td>
+
+
+                        </tr>
+                        <?php
+                        }
+                    } else {
+                        echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
+                    }
+                        ?>
+                </tbody>
             </table>
+            </form>
         </div>
         <!-- Akhir Tables -->
 
     </section>
 
     <!-- Footer -->
-    <footer id="footer" class="py-4 bg-primary position-relative mt-5">
+    <footer id="footer" class="py-4 bg-primary position-relative">
         <div class="container-md text-center text-white fs-6">
             <p class="my-0">&copy; Copyright <span class="fw-bold">gudangcomputer</span>. All Rights Reserved.</p>
             <p class="my-0">

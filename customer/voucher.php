@@ -39,7 +39,7 @@ require '../functions.php';
     <!-- My CSS -->
     <link rel="stylesheet" href="../css/market.css">
 
-    <title>Profile</title>
+    <title>Voucher</title>
 </head>
 
 <body>
