@@ -7,39 +7,13 @@ if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 } else {
     // jika sudah ambil data nya
-    $id = $_SESSION['id'];
-    $picture = $_SESSION['picture'];
-    $username = $_SESSION['username'];
-    $nama = $_SESSION['nama'];
-    $email = $_SESSION['email'];
+    $user_id = $_SESSION['id'];
 }
 
 // konek function
 require '../functions.php';
 
-// query profile
-$profile = query("SELECT * FROM customer");
-
-// apakah tombol submit sudah di tekan atau belum 
-if (isset($_POST["submit"])) {
-
-    // apakah data berhasil ditambahkan atau tidak
-    if (changeprofile($_POST) > 0) {
-        echo "
-             <script>
-                 alert('Succes!, Please Login Again');
-                 document.location.href = 'logout.php';
-             </script>
-       ";
-    } else {
-        echo "
-        <script>
-            alert('Failed To Change!');
-            document.location.href = 'profile.php';
-        </script>
-        ";
-    }
-}
+$detailorder = query("SELECT * FROM detailorder WHERE user_id = $user_id");
 
 ?>
 <!doctype html>
@@ -90,18 +64,26 @@ if (isset($_POST["submit"])) {
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="order.php">My Order</a></li>
-                            <li><a class="dropdown-item" href="voucher.php">My Voucher</a></li>
-                            <li><a class="dropdown-item" href="logout.php"
-                                    onclick="return confirm('Are You Sure?')">Logout</a></li>
-                        </ul>
+                    <?php
+                    if (!isset($_SESSION['login'])) {
+                        // cek user login
+                        echo '
+                    <li class="nav-item">
+                        <a class="nav-link text-white"
+                        href="login.php">Login
+                        <i class="bi bi-box-arrow-in-right"></i></a>
                     </li>
+                    ';
+                    } else {
+                        // jika sudah login
+                        echo '
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profile.php">Profile
+                    <i class="bi bi-person-circle"></i></a>
+                    </li>
+                    ';
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -120,53 +102,54 @@ if (isset($_POST["submit"])) {
     <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
-    <!-- Form My Profile -->
-    <section class="container mb-5" style="background-color: white;">
-        <!-- Header -->
-        <section class="jumbotron mb-4 mt-5">
-            <h1 class="display-5 fw-bold pt-3">Profile <?php echo $_SESSION['nama'] ?></h1>
-            <p>Manage your profile information to control, protect and secure your account</p>
-        </section>
-        <!-- Akhir Header -->
+    <!-- Order-->
+    <section class="container mb-5 mt-5" style="background-color: white; height: 100vh;">
+        <div class="table-responsive">
+            <table class="table bg-primary container text-center text-white mb-1 mt-3 fw-bold">
 
-        <!-- Form Data -->
-        <form action="" method="post" enctype="multipart/form-data">
+                <thead class="text-uppercase">
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </thead>
 
-            <input type="hidden" name="pictureOld" value="<?= $_SESSION["picture"]; ?>">
+                <tbody>
+                    <?php
+                    $order_query = mysqli_query($db, "SELECT * FROM `detailorder` WHERE user_id = '$user_id'") or die('query failed');
+                    $grand_total = 0;
+                    if (mysqli_num_rows($order_query) > 0) {
+                        while ($fetch_order = mysqli_fetch_assoc($order_query)) {
+                    ?>
+                    <td>
+                        <?php echo $fetch_order['name']; ?>
+                    </td>
+                    <td class="text-truncate">
+                        <?php echo $fetch_order['alamat']; ?>
+                    </td>
+                    <td><?php echo $fetch_order['quantity']; ?></td>
+                    <td>
+                        <p><?php echo rupiah($fetch_order['price']); ?></p>
+                    </td>
 
-            <div class="mb-4 text-center">
-
-
-                <img class="rounded-circle border border-primary mb-3" width="200px" height="200px"
-                    src="../image/profile/<?= $_SESSION["picture"] ?>" alt="" id="" name="">
-
-                <div>
-                    <label for="picture" class="btn btn-primary btn-sm mb-2">
-                        SELECT IMAGE
-                        <input class="d-none" type="file" name="picture" id="picture"
-                            value="<?= $_SESSION["picture"]; ?>">
-                    </label>
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username"
-                    value="<?= $_SESSION["username"] ?>">
-            </div>
-            <div class="mb-4">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name"
-                    value="<?= $_SESSION["nama"] ?>">
-            </div>
-            <div class="mb-4">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                    value="<?= $_SESSION["email"] ?>">
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm mb-4" name="submit">CHANGE</button>
-
-        </form>
-        <!-- Akhir Form Data -->
+                    <td>
+                        <?php echo $fetch_order['status']; ?>
+                    </td>
+                    <td><button class="btn btn-primary btn-sm fw-bold">CONFIRM</button></td>
+                    </tr>
+                    <?php
+                        }
+                    } else {
+                        echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </section>
-    <!-- Akhir Form My Profile -->
+    <!-- Akhir Order -->
 
     <!-- Footer -->
     <footer id="footer" class="py-4 bg-primary position-relative">

@@ -182,6 +182,7 @@ if (isset($_POST["buy"])) {
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title fw-bold"><?= $prdct["nama"]; ?></h5>
+                            <input type="hidden" name="name" value="<?= $prdct["nama"]; ?>">
                             <p class="card-text d-inline me-3"><?= rupiah($prdct["price"]); ?></p>
                             <p id="stock" class="card-text d-inline me-3">Stock <?= $prdct["stock"]; ?></p>
                             <input type="hidden" class="me-3" type="text" value="<?= $prdct["stock"]; ?>" name="stock">
@@ -241,6 +242,7 @@ if (isset($_POST["buy"])) {
                         <div class="p-2">Subtotal</div>
                         <div class="p-2">:</div>
                         <div class="ms-auto p-2 fw-bold text-primary fs-5"><?php echo rupiah($grand_total); ?></div>
+                        <input type="hidden" name="price" value="<?php echo $grand_total; ?>">
                     </div>
 
                     <hr>

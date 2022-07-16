@@ -239,11 +239,13 @@ function order($data)
     // ambil data
     $id_product = $_GET['id'];
     $user_id = $_SESSION['id'];
+    $name_product = $data['name'];
     $alamat = $data["alamat"];
     $quantiti = $_SESSION['quantity'];
+    $pricee = $data["price"];
 
     //query insert data
-    $query = mysqli_query($db, "INSERT INTO detailorder (id,id_product,user_id,alamat,quantity) VALUES (NULL,'$id_product','$user_id','$alamat',$quantiti)");
+    mysqli_query($db, "INSERT INTO detailorder (id,id_product,user_id,name,alamat,quantity,price) VALUES (NULL,'$id_product','$user_id','$name_product','$alamat','$quantiti','$pricee')");
 }
 
 // hapus data product & image di local

@@ -5,41 +5,10 @@ session_start();
 // cek user login
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
-} else {
-    // jika sudah ambil data nya
-    $id = $_SESSION['id'];
-    $picture = $_SESSION['picture'];
-    $username = $_SESSION['username'];
-    $nama = $_SESSION['nama'];
-    $email = $_SESSION['email'];
 }
 
 // konek function
 require '../functions.php';
-
-// query profile
-$profile = query("SELECT * FROM customer");
-
-// apakah tombol submit sudah di tekan atau belum 
-if (isset($_POST["submit"])) {
-
-    // apakah data berhasil ditambahkan atau tidak
-    if (changeprofile($_POST) > 0) {
-        echo "
-             <script>
-                 alert('Succes!, Please Login Again');
-                 document.location.href = 'logout.php';
-             </script>
-       ";
-    } else {
-        echo "
-        <script>
-            alert('Failed To Change!');
-            document.location.href = 'profile.php';
-        </script>
-        ";
-    }
-}
 
 ?>
 <!doctype html>
