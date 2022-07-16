@@ -232,6 +232,20 @@ function checkout($data)
     return mysqli_affected_rows($db);
 }
 
+// tambah data orderbuy
+function order($data)
+{
+    global $db;
+    // ambil data
+    $id_product = $_GET['id'];
+    $user_id = $_SESSION['id'];
+    $alamat = $data["alamat"];
+    $quantiti = $_SESSION['quantity'];
+
+    //query insert data
+    $query = mysqli_query($db, "INSERT INTO detailorder (id,id_product,user_id,alamat,quantity) VALUES (NULL,'$id_product','$user_id','$alamat',$quantiti)");
+}
+
 // hapus data product & image di local
 function hapus($query)
 {
@@ -253,26 +267,26 @@ function uploadpicture()
     //cek apakah yang diupload adalah gambar
     $extensionGambarValid = ['JPG', 'jpeg', 'png'];
     $extensionGambar = explode('.', $nameFile);
-    // fungsi explode itu string jadi array , kalau nama 
+    // fungsi explode itu string jadi array , kalau nama
     // filenya qibar.jpg itu menjadi ['qibar','jpg']
     $extensionGambar = strtolower(end($extensionGambar));
     if (!in_array($extensionGambar, $extensionGambarValid)) {
         echo "<script>
-        alert('Yang anda upload bukan gambar');
-            </script>";
+alert('Yang anda upload bukan gambar');
+</script>";
         return false;
     }
 
     //cek jika ukurannya terlalu besar
     if ($sizeFile > 2000000) {
         echo "<script>
-        alert('Max size file 2MB, Try Again!');
-            </script>";
+alert('Max size file 2MB, Try Again!');
+</script>";
         return false;
     }
 
     // lolos pengecekan, gambar siap di upload
-    // dan generate nama baru 
+    // dan generate nama baru
     $nameFileBaru = uniqid();
     $nameFileBaru .= '.';
     $nameFileBaru .= $extensionGambar;
@@ -292,7 +306,7 @@ function changeprofile($data)
     $nama = htmlspecialchars($data["nama"]);
     $email = htmlspecialchars($data["email"]);
 
-    // cek apakah user pilih gambar baru atau tidak 
+    // cek apakah user pilih gambar baru atau tidak
     $pictureOld = htmlspecialchars($data["pictureOld"]);
     if ($_FILES['picture']['error'] === 4) {
         $picture = $pictureOld;
@@ -301,7 +315,8 @@ function changeprofile($data)
     }
 
     //query insert data
-    $query = "UPDATE customer SET picture = '$picture', username = '$username', nama = '$nama', email = '$email' WHERE id = $id";
+    $query = "UPDATE customer SET picture = '$picture', username = '$username', nama = '$nama', email = '$email' WHERE id =
+$id";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);

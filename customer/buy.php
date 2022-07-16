@@ -24,14 +24,15 @@ if (!isset($_SESSION["login"])) {
     $_SESSION['quantity'];
 }
 
-// cek apakah tombol submit sudah di tekan atau belum 
+// cek apakah tombol buy
 if (isset($_POST["buy"])) {
 
-    // cek apakah data berhasil ditambahkan atau tidak
+    // cek apakah stock berhasil dirubah
     if (checkout($_POST) > 0) {
         echo "
             <script>
-                alert('Successfully!');
+                alert('Process!');
+                alert('Your Order Was Successful!');
                 document.location.href = '../index.php';
             </script>
        ";
@@ -39,6 +40,23 @@ if (isset($_POST["buy"])) {
         echo "
         <script>
             alert('Failed!');
+            document.location.href = '../index.php';
+        </script>
+        ";
+    }
+
+    // cek apakah stock berhasil dirubah
+    if (order($_POST) > 0) {
+        echo "
+            <script>
+                alert('Failed!');
+                document.location.href = '../index.php';
+            </script>
+       ";
+    } else {
+        echo "
+        <script>
+            alert('Your Order Was Successful!');
             document.location.href = '../index.php';
         </script>
         ";
@@ -148,7 +166,7 @@ if (isset($_POST["buy"])) {
                     <label for="addres" class="form-label fw-bold fs-5 text-primary">
                         <i class="bi bi-geo-alt-fill"></i> Shipping address
                     </label>
-                    <input type="Text" class="form-control" id="addres" placeholder="Jakarta, Indonesia"
+                    <input name="alamat" type="Text" class="form-control" id="addres" placeholder="Your Address"
                         value="Jakarta, Indonesia" required>
                 </div>
             </div>

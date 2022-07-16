@@ -90,18 +90,26 @@ if (isset($_POST["submit"])) {
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php">Cart <i class="bi bi-cart3"></i></a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDarkDropdownMenuLink"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Profile
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">My Order</a></li>
-                            <li><a class="dropdown-item" href="voucher.php">My Voucher</a></li>
-                            <li><a class="dropdown-item" href="logout.php"
-                                    onclick="return confirm('Are You Sure?')">Logout</a></li>
-                        </ul>
+                    <?php
+                    if (!isset($_SESSION['login'])) {
+                        // cek user login
+                        echo '
+                    <li class="nav-item">
+                        <a class="nav-link text-white"
+                        href="login.php">Login
+                        <i class="bi bi-box-arrow-in-right"></i></a>
                     </li>
+                    ';
+                    } else {
+                        // jika sudah login
+                        echo '
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="profile.php">Profile
+                    <i class="bi bi-person-circle"></i></a>
+                    </li>
+                    ';
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -120,53 +128,11 @@ if (isset($_POST["submit"])) {
     <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
-    <!-- Form My Profile -->
-    <section class="container mb-5" style="background-color: white;">
-        <!-- Header -->
-        <section class="jumbotron mb-4 mt-5">
-            <h1 class="display-5 fw-bold pt-3">Profile <?php echo $_SESSION['nama'] ?></h1>
-            <p>Manage your profile information to control, protect and secure your account</p>
-        </section>
-        <!-- Akhir Header -->
-
-        <!-- Form Data -->
-        <form action="" method="post" enctype="multipart/form-data">
-
-            <input type="hidden" name="pictureOld" value="<?= $_SESSION["picture"]; ?>">
-
-            <div class="mb-4 text-center">
-
-
-                <img class="rounded-circle border border-primary mb-3" width="200px" height="200px"
-                    src="../image/profile/<?= $_SESSION["picture"] ?>" alt="" id="" name="">
-
-                <div>
-                    <label for="picture" class="btn btn-primary btn-sm mb-2">
-                        SELECT IMAGE
-                        <input class="d-none" type="file" name="picture" id="picture"
-                            value="<?= $_SESSION["picture"]; ?>">
-                    </label>
-                </div>
-            </div>
-
-            <div class="mb-4">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username"
-                    value="<?= $_SESSION["username"] ?>">
-            </div>
-            <div class="mb-4">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Name"
-                    value="<?= $_SESSION["nama"] ?>">
-            </div>
-            <div class="mb-4">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email"
-                    value="<?= $_SESSION["email"] ?>">
-            </div>
-            <button type="submit" class="btn btn-primary btn-sm mb-4" name="submit">CHANGE</button>
-
-        </form>
-        <!-- Akhir Form Data -->
+    <!-- Voucher-->
+    <section class="container mb-5 mt-5" style="background-color: white; height: 100vh;">
+        <h1 class="text-center position-absolute top-50 start-50 translate-middle">Vouchers Not Available !</h1>
     </section>
-    <!-- Akhir Form My Profile -->
+    <!-- Akhir Voucher -->
 
     <!-- Footer -->
     <footer id="footer" class="py-4 bg-primary position-relative">
