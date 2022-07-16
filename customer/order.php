@@ -121,8 +121,16 @@ if (isset($_POST['confirm'])) {
     <!-- Akhir Search -->
     <!-- Akhir Navbar -->
 
+    <!-- Alert -->
+    <div class="alert alert-warning d-flex align-items-center mt-3 border border-secondary container" role="alert">
+        <div class="text-dark fw-bold">
+            <i class="bi bi-box"></i> Confirm if the goods have been received !
+        </div>
+    </div>
+    <!-- Akhir Alert -->
+
     <!-- Order-->
-    <section class="container mb-5 mt-5" style="background-color: white; height: 100vh;">
+    <section class="container mb-5" style="background-color: white; height: 100vh;">
         <form action="" method="post">
             <div class="table-responsive">
                 <table class="table bg-primary container text-center text-white mb-1 mt-3 fw-bold">
@@ -159,7 +167,9 @@ if (isset($_POST['confirm'])) {
                         <td>
                             <?php echo $fetch_order['status']; ?>
                         </td>
+
                         <td><button name="confirm" class="btn btn-primary btn-sm fw-bold">CONFIRM</button></td>
+
                         </tr>
                         <?php
                             }
