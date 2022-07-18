@@ -1,5 +1,7 @@
 Simple Website E Commerce
 
-Teknologi yang saya gunakan : HTML, CSS, Bootstrap, Bootstrap Icon, JS, PHP, MySQL ,Google Font, GitHub
+Teknologi yang saya gunakan : HTML, CSS, Bootstrap, Bootstrap Icon, JS, PHP, MySQL , Google Font, GitHub, 000webhost
+
+DEMO : http://gudangcomputeraysrg9.000webhostapp.com/
 
 Terima Kasih :)
