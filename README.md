@@ -1,4 +1,4 @@
-Simple Website E Commerce
+Simple E Commerce Website
 
 Teknologi yang saya gunakan : HTML, CSS, Bootstrap, Bootstrap Icon, JS, PHP, MySQL , Google Font, GitHub, 000webhost
 
